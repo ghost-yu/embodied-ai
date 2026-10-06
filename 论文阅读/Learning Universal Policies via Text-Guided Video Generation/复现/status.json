@@ -1,0 +1,6 @@
+{
+  "status": "部分成功",
+  "scope": "教学像素视频扩散/监督补帧/学习逆动力学/八步open-loop执行与独立重载；精度不足，非官方UniPi实现，完整论文未复现",
+  "date": "2026-10-05",
+  "full_paper_reproduction": "未复现"
+}

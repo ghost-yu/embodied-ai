@@ -1,0 +1,6 @@
+{
+  "strict_load": "passed",
+  "new_process_sampling_matches": true,
+  "max_abs_error": 0.0,
+  "real_robot_evaluation": false
+}

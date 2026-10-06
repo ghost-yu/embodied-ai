@@ -1,0 +1,62 @@
+[
+  {
+    "paper": "RT-1",
+    "reading": "核心方法详细第一版已写入",
+    "demo": "官方模块级部分成功",
+    "full_paper_reproduction": "未复现"
+  },
+  {
+    "paper": "RT-2",
+    "reading": "核心方法与附录设置已核对；教学代码详细解释已写入",
+    "demo": "教学共享模型共同训练/受限解码成功；非官方复现",
+    "full_paper_reproduction": "未复现"
+  },
+  {
+    "paper": "OpenVLA",
+    "reading": "核心方法、两种接口、监督/缓存与微调日志已详读",
+    "demo": "官方HF类缩小随机配置：前向、梯度、缓存生成与后处理部分成功",
+    "full_paper_reproduction": "未复现"
+  },
+  {
+    "paper": "MDT",
+    "reading": "核心公式、Transformer路径、MGF/CLA和采样已详细核对",
+    "demo": "官方动作核心缩小配置：前向、反向、合成训练、DDIM和权重重载部分成功",
+    "full_paper_reproduction": "未复现"
+  },
+  {
+    "paper": "RDT-1B",
+    "reading": "核心公式、128维槽位、ACI/QKNorm、训练/评估reduction与采样已详细核对",
+    "demo": "官方RDTRunner缩小配置：128维64动作块，训练/mask/ACI/五步采样和重载部分成功",
+    "full_paper_reproduction": "未复现"
+  },
+  {
+    "paper": "pi0",
+    "reading": "flow换元、专家QKV、prefix/state/action mask、缓存、数据变换与实验已详细核对",
+    "demo": "官方JAX小配置：501更新，flow/mask/cache、10步Euler和参数重载部分成功；视觉构造适配器",
+    "full_paper_reproduction": "未复现"
+  },
+  {
+    "paper": "CogACT",
+    "reading": "认知位置、DiT concat条件、epsilon/CFG/DDIM、ensemble及实验协议已详细核对",
+    "demo": "官方DiT-S：901更新、DDIM/CFG/历史融合和重载部分成功；合成采样精度不足",
+    "full_paper_reproduction": "未复现"
+  },
+  {
+    "paper": "UniPi",
+    "reading": "UPDP/视频条件/层级/附录网络和动作协议、官网代码推荐及教学全链路详读完成",
+    "demo": "教学像素视频扩散、监督补帧、学习逆动力学与实际toy执行/重载部分成功；18/64，精度不足",
+    "full_paper_reproduction": "未复现"
+  },
+  {
+    "paper": "Genie",
+    "reading": "原LAM/ST/tokenizer/dynamics、数据筛选/附录E/F及第三方VQ/mask/sampling详读完成",
+    "demo": "第三方小配置训练/因果/user码生成/重载部分成功；初轮collapse，VQ对照部分缓解，语义与采样仍有限制",
+    "full_paper_reproduction": "未复现"
+  },
+  {
+    "paper": "I-JEPA",
+    "reading": "mask几何/fallback/样本身份、官方loss/optimizer/EMA、附录消融与RCDM已详读",
+    "demo": "官方小配置501更新、mask/EMA/梯度/无泄漏和重载部分成功；特征方差缩小，语义质量未验证",
+    "full_paper_reproduction": "未复现"
+  }
+]

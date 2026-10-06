@@ -1,0 +1,117 @@
+WARNING:tensorflow:From G:\����\�����Ķ�\.venvs\rt1\Lib\site-packages\keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+WARNING:tensorflow:From G:\����\�����Ķ�\.venvs\rt1\Lib\site-packages\keras\src\backend.py:873: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From G:\����\�����Ķ�\.venvs\rt1\Lib\site-packages\keras\src\layers\normalization\layer_normalization.py:328: The name tf.nn.fused_batch_norm is deprecated. Please use tf.compat.v1.nn.fused_batch_norm instead.
+
+{"step": 0, "mixed_ce": 5.905514717102051, "robot_ce": 6.039622783660889, "web_ce": 5.771407127380371}
+{"step": 50, "mixed_ce": 0.3741481304168701, "robot_ce": 0.18422763049602509, "web_ce": 0.564068615436554}
+{"step": 100, "mixed_ce": 0.14252124726772308, "robot_ce": 0.16694402694702148, "web_ce": 0.11809846758842468}
+{"step": 150, "mixed_ce": 0.009809937328100204, "robot_ce": 0.01165669783949852, "web_ce": 0.007963176816701889}
+{"step": 200, "mixed_ce": 0.003002007957547903, "robot_ce": 0.0033781048841774464, "web_ce": 0.0026259110309183598}
+{"step": 250, "mixed_ce": 0.0018367471639066935, "robot_ce": 0.002043341053649783, "web_ce": 0.0016301533905789256}
+{"step": 300, "mixed_ce": 0.0013029237743467093, "robot_ce": 0.0014395458856597543, "web_ce": 0.0011663016630336642}
+{
+  "implementation": "teaching ToyVLA; not official RT-2, PaLI-X, or PaLM-E",
+  "environment": {
+    "python": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+    "tensorflow": "2.15.1",
+    "numpy": "1.26.4",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "device": "CPU"
+  },
+  "seed": 23,
+  "updates": 301,
+  "shared_parameters": 70416,
+  "data": {
+    "train_layouts": 18,
+    "heldout_layouts": 6,
+    "queries_per_layout": 3,
+    "robot_and_web_mix": ".5/.5 per-sample mean CE",
+    "physical_world": "none"
+  },
+  "train": {
+    "samples": 54,
+    "robot_all_8_fields_exact": 1.0,
+    "web_position_exact": 1.0,
+    "robot_tokens_in_bank": true
+  },
+  "heldout": {
+    "samples": 18,
+    "robot_all_8_fields_exact": 0.7222222222222222,
+    "web_position_exact": 0.7222222222222222,
+    "robot_tokens_in_bank": true
+  },
+  "initial_mixed_ce": 5.905514717102051,
+  "final_recorded_mixed_ce": 0.0013029237743467093,
+  "constraint_probe": {
+    "free_id": 4,
+    "action_only_id": 144
+  },
+  "example": {
+    "query_color": 0,
+    "image": [
+      [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    ],
+    "action_token_ids": [
+      16,
+      208,
+      80,
+      144,
+      144,
+      144,
+      144,
+      271
+    ],
+    "action_bin_ids": [
+      0,
+      192,
+      64,
+      128,
+      128,
+      128,
+      128,
+      255
+    ],
+    "terminate": 0,
+    "continuous_fields": [
+      0.50390625,
+      -0.49609375,
+      0.00390625,
+      0.00390625,
+      0.00390625,
+      0.00390625,
+      0.99609375
+    ]
+  },
+  "limits": [
+    "synthetic images, tiny randomly initialized transformer",
+    "no web pretraining or PaLI-X/PaLM-E weights",
+    "no causal ablation of co-fine-tuning",
+    "no robot environment or physical safety check"
+  ]
+}
+PASS: shared token training and constrained autoregressive decoding demo.

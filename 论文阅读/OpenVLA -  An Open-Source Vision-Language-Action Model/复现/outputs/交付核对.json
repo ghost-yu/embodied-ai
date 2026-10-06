@@ -1,0 +1,8 @@
+{
+  "recorded_at_local": "2026-10-04T00:05:13.447091+08:00",
+  "scope": "official class tiny random configuration",
+  "source_hashes": "matched",
+  "local_links_and_structure": "passed",
+  "forward_gradient_generation_postprocess": "passed",
+  "full_7B_paper_reproduction": "未复现"
+}

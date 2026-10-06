@@ -1,0 +1,14 @@
+# @package _global_
+
+defaults:
+  - tokenizer_ft_smb
+  - _self_
+
+model: tokenizer
+
+train:
+  dataset_root_dpath: "data_generation/datasets"
+  dataset_name: "retro_act_v0.0.0_auto_explore_ai2"
+  wandb_name: "tokenizer_ft_ai2"
+
+tokenizer_fpath: ${train.save_root_dpath}/tokenizer/tokenizer/model-150000.pt

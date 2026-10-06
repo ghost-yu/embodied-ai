@@ -1,0 +1,215 @@
+## 1. 问题与论文地图
+
+OpenVLA 解决的是开放的通用机器人策略：既能利用大规模示范和预训练 VLM，也能让研究者在新机器人任务上微调。它把机器人动作编码成语言词表中的 token，模型规模为 7B，训练使用约 970k 示范。其开放训练、LoRA 与量化实验和架构选择共同构成贡献。
+
+论文地图：§3.1/Figure 2/PDF 4 页讲骨干；§3.2 讲动作 token；§3.3 讲数据筛选；§3.4 讲分辨率、视觉微调和训练选择；§5.1 讲直接部署；§5.2 讲适配；Tables 1–2 讲 LoRA/量化；附录 Tables 4、7、8 提供完整结果；附录 C 解释 RT-2-X 的数据预处理比较问题。
+
+## 2. Figure 2 与单样本数据流【必须会】
+
+图像经过 DINOv2 和 SigLIP 两个编码器，两组 patch 特征按**通道维拼接**，MLP projector 转成 Llama 2 的 embedding 宽度。文本经过 Llama tokenizer，视觉和文本在模型序列中融合，生成动作 token；动作 tokenizer 反解为归一化动作，再用训练数据统计反归一化。
+
+|变量|类型、shape|变化|
+|---|---|---|
+|image|PIL RGB 图像|image_transform 输出张量或双编码器所需字典|
+|pixel_values|浮点 `[B,3,R,R]` 或字典|论文 R=224；实现以 image_transform 配置为准|
+|双视觉特征|浮点 `[B,N,D_DINO]` 与 `[B,N,D_SIG]`|N 相同才可按末轴拼接|
+|拼接特征|浮点 `[B,N,D_DINO+D_SIG]`|projector→`[B,N,D_LLM]`|
+|input_ids|整数 `[B,L]`|任务 prompt→语言token|
+|action token IDs|整数 `[B,D_a]`|逐个生成动作维，典型单臂 D_a=7|
+|normalized/actions|NumPy 浮点 `[D_a]`|解码→物理量纲恢复|
+
+这不是双图像编码器特征在 token 轴翻倍；也不是一个 token 等于一个像素。典型 D_a=7 也不代表任意数据集都自动有相同坐标系。数据集必须标准化动作约定。
+
+原论文主要采用当前第三人称图像和单臂末端控制；没有把历史视频、本体状态、双臂任意动作空间都默认纳入该架构。看到后续 OpenVLA 变体支持 action chunk 不能反推原论文也是相同设计。
+
+## 3. 动作归一化、量化与监督
+
+为了防止异常动作扩大整个量化范围，论文按每维训练动作的 1%/99% 分位数设置区间。教学重写：
+
+$$\tilde a_j=2\frac{\operatorname{clip}(a_j,q_{01,j},q_{99,j})-q_{01,j}}{q_{99,j}-q_{01,j}}-1.$$
+
+j 是动作维；q 是数据统计；a 和 q 是浮点 `[D_a]`。分位数不是机器人关节硬件极限。某些维度的 mask=False 可跳过这类变换，例如夹爪约定需检查具体数据。
+
+`ActionTokenizer` 用 `np.digitize` 等操作把 [-1,1] 的连续动作转 bin，再映射到词表末端较少使用的 token。**正文“256 bins”与代码 bin 边界、bin center 数组不能只按自然语言猜。** 保存实现建立 `n_bins` 个边界和相邻中心，解码还 clip 索引；因此 endpoint、token ID 反向偏移以及中心数量应以该文件为准，不能简单照搬 RT-1 的 floor×255。
+
+保存代码的具体教学转写【必须会】：设词表大小为 V，256 个边界 $e_i=-1+2i/255$（i=0,…,255），相邻中心 $c_i=(e_i+e_{i+1})/2$（i=0,…,254）。`digitize` 默认返回 b∈[1,256]，词表 ID 为 V−b；解码用 $c_{\operatorname{clip}(V-ID-1,0,254)}$。其中 ID 为整数，输出是连续浮点。
+
+归一化值 −1、0、1 分别得到 b=1、128、256；反解约为 −0.996078、0、0.996078。最上端 b=255 和 b=256 都被解码到最后一个中心，说明编码的 256 个索引与解码的 255 个中心并不一一对应。`__call__` 最后返回 tokenizer 解码的字符串或字符串列表；`decode_token_ids_to_actions` 才返回 NumPy 动作数组。前者是 Python 可调用对象接口，不是神经网络 forward；这两个操作不修改学习权重。
+
+训练目标是动作 token 的 next-token 交叉熵，教学重写：
+
+$$L=-\sum_{j\in\Omega}\log p_\theta(b_j\mid I,l,b_{<j}).$$
+
+Ω 是实际有监督的位置；模型视觉 token 和 prompt 通常不作为动作预测的目标。`RLDSBatchTransform` 把样本变成 prompt、图像、input_ids、labels；用 ignore index=-100 屏蔽不计算 loss 的 labels。是否训练 EOS 也要检查配置，不能把正文“动作token only”当成所有开关无差别相同。
+
+比如正确动作 token 的概率从 0.1 提到 0.8，对应单项 loss 从约 2.303 到 0.223；这表示模型更匹配示范类别，不表示这一步一定让机器人完成任务。
+
+## 4. 原实现 `OpenVLA.predict_action` 分步读
+
+这个方法属于 `OpenVLA(PrismaticVLM)`，是实例方法，不是普通独立函数。入口 `predict_action(image, instruction, unnorm_key=None, **kwargs)`：image 为 PIL 图像，instruction 为字符串；unnorm_key 选择数据集统计；kwargs 继续传给生成接口。`@torch.inference_mode()` 关闭梯度相关记录。
+
+1. 构造语言 prompt。`instruction.lower()` 转小写，再由 prompt builder 包装成 VLA 问答。
+2. tokenizer 生成 `[1,L]` 整数 input_ids，`.to(self.device)` 移到模型设备。这个原始接口仅支持 LlamaTokenizerFast；其他类型直接 ValueError。需要时补 ID 29871，目的是与训练 prompt 格式一致；它不是动作类别。
+3. image_transform 输出张量或字典，每项 `[None,...]` 添加 batch 轴。`.to(device)` 不自动解释图像数值范围，归一化已在 transform 中做。
+4. 调用生成，`max_new_tokens=self.get_action_dim(unnorm_key)` 使生成长度对应动作维。
+5. `generated_ids[0,-D_a:]` 取最后动作 token，`cpu().numpy()` 从设备张量转 NumPy，送给动作 tokenizer。
+6. 查对应数据集的 q01/q99 与 mask，恢复物理动作。
+
+关键原代码：
+
+```python
+actions = np.where(
+    mask,
+    0.5 * (normalized_actions + 1) * (action_high - action_low) + action_low,
+    normalized_actions,
+)
+```
+
+`np.where(mask,x,y)` 对每维选择 x 或 y。其教学式为：
+
+$$a_j=\begin{cases}\frac{\tilde a_j+1}{2}(q_{99,j}-q_{01,j})+q_{01,j},&m_j=1\\\tilde a_j,&m_j=0.\end{cases}$$
+
+例：归一化动作=0.5、q01=-0.2、q99=0.6，恢复值为 0.4；mask=False 时保持 0.5。返回 `np.ndarray[D_a]`，推理不会更新学习参数；生成过程可能使用缓存，但此 API 不把长期机器人 episode 状态作为返回值。没有选对 unnorm_key，模型输出即使“数字合理”，物理控制也可能错误。多个统计集时 None 会触发检查，而不是随机选择。
+
+## 5. 沿微调和推理调用链读代码
+
+微调：`vla-scripts/finetune.py`→配置与 AutoModel/processor、LoRA 包装→RLDSDataset/BatchTransform→collator→forward(labels)→动作 loss→backward/optimizer→checkpoint。完整预训练入口是 `vla-scripts/train.py`，两者的分布式策略与训练参数不能混写。
+
+推理可读：`experiments/robot/libero/run_libero_eval.py`→robot/openvla utils→加载模型/processor→预处理图像、语言→`predict_action`→反归一化→LIBERO 动作与夹爪适配→environment.step。该链存在部署端转换，不能说模型输出直接无条件适用于任意环境。
+
+源代码对象的精确路径和行号在末尾。依赖在 pyproject.toml；环境还涉及 transformers、torch、视觉编码器和数据处理组件。LoRA 是在选定权重中加入低秩更新，并不意味着整个模型都不用占显存。README 的训练命令应按当前 commit 解释，而不是复制其他版本的参数。
+
+## 6. 定量结果与比较公平性
+
+附录 Table 4/PDF 26 页：BridgeData V2 WidowX，17 任务、每任务 10 trials，部分任务允许 0.5 分。平均成功率为 RT-1-X 18.5±2.7%、Octo 20.0±2.6%、RT-2-X 50.6±3.5%、OpenVLA 70.6±3.2%。OpenVLA 比 RT-2-X 高 20 个百分点；误差为表中报告的标准误，不能改称标准差。
+
+这不是严格“只换骨干”的对照：数据混合、双视觉编码器和 Bridge 预处理不同。附录 C 明确指出原始 Bridge 每段第一步存在 no-op 动作，OpenVLA 过滤了第一 transition；RT-2-X 无法重训，评估采用第二可能动作等 workaround。必须把这些差别纳入解释。
+
+Table 7/PDF 32 页 Franka-Tabletop：Diffusion Policy=48.5%，OpenVLA=67.2%，高 18.7 个百分点；但“Pour Corn”in-distribution 的 DP=100%、OpenVLA=50%。所以平均胜出不意味着每个任务胜出。DP matched 与原 DP 配置不是同一列，比较时须说明观察和控制匹配条件。
+
+Table 8 LoRA r=32/64 的平均为 68.2%，全量 FT=69.7%；差 1.5 个百分点且误差区间重叠，支持低秩微调在该小任务集有实用价值，不证明所有场景同等。
+
+量化附录 Table 5/PDF 26 页：bfloat16=71.3%、int8=58.1%、int4=71.9%。int8 低 13.2 个百分点，而 int4 未显示同样损失；不能按“位数越多一定越好”解释。有限样本、量化实现和控制方式都影响结果。Table 11 另有 blocking control 实验，不能混入同一统计。
+
+## 7. 掌握层次与未解决问题
+
+【必须会】双视觉特征的 channel concat、projector、动作 token、标签 mask、q01/q99 和 unnorm_key、推理到环境动作的转换。
+
+【建议会】LoRA 参数边界、数据 mixture、Bridge no-op 过滤、量化与控制频率的交互、训练 token 准确率与真机成功率的差别。
+
+【可以暂时不掌握】全量 64 A100 预训练、FSDP 分片细节、FlashAttention 内核。
+
+未解决：还未用实际 RLDS 样本跑出 shape 日志；原视觉配置的256 patch/2176融合宽度已按保存timm定义核对，但真实预训练前向未运行；现有 8GB 显存不满足论文所述约 15GB bfloat16 完整模型 footprint，需要另评估量化和实际环境，不能保证 LoRA 就能直接跑。全量训练与真机实验未复现。
+
+|Paper ↔ Code|已定位|边界|
+|---|---|---|
+|Figure 2 视觉融合|原始视觉骨干与 PrismaticVLM.forward|原始预训练前向未运行；HF tiny前向见第9节|
+|§3.2 动作词表|ActionTokenizer|端点行为按保存实现|
+|训练监督|RLDSBatchTransform、finetune.py|未运行 RLDS 数据读取|
+|反量化/反归一化|OpenVLA.predict_action|已静态核对关键分支|
+|适配与评估|LoRA 微调入口、LIBERO 评估入口|论文真机实验未复现|
+
+
+## 8. 原始接口与 Hugging Face 接口如何对应
+
+仓库中有两条实现路径，不能把类名和输入类型混成一条。
+
+|路径|核心对象|输入层次|特点|
+|---|---|---|---|
+|原始 Prismatic 包|`prismatic/models/vlas/openvla.py` 的 OpenVLA|PIL图像+字符串 instruction|构造prompt、图像transform、调用继承的generate|
+|独立 HF 实现|`prismatic/extern/hf/modeling_prismatic.py` 的 OpenVLAForActionPrediction|input_ids+已处理pixel_values|上游processor负责原图/文本；模型直接生成再后处理|
+
+HF版 `predict_action(input_ids=None,unnorm_key=None,**kwargs)` 的默认 None 并不表示无需输入：方法立即访问 input_ids，因此调用者必须提供实际tensor。kwargs传给generate，pixel_values就在这里传入。它在缺少末尾29871时补齐，再按动作维生成；归一化解码在方法中直接用bins/bin_centers实现，而不是调用一个ActionTokenizer对象。
+
+HF版区分 `config.text_config.vocab_size` 和反量化使用的 `self.vocab_size`。语言模型embedding/输出词表可能为对齐多出来64个位置；动作词表反向编号要减去 `pad_to_multiple_of` 恢复原词表大小。例如配置32064、对齐64时，反量化基数为32000。不能用32064直接减ID后称为正确动作bin。
+
+原始双编码器 image_transform 返回 dino/siglip 字典；HF融合骨干接受打包后的六通道tensor，再在通道轴拆成两个RGB输入。两个encoder输出按feature轴拼接，MLP投射到LLM宽度。不同接口的pixel_values容器类型需以实际对象为准。
+
+### HF forward 中的 mask、labels 与缓存【必须会】
+
+多模态forward读取patch_features，经projector得到 `[B,N,D_llm]`。文本embedding是 `[B,L,D_llm]`。代码把视觉位置插在BOS之后：`text[:,:1] + visual + text[:,1:]`，完整长度为L+N。attention_mask在同一位置插入有效视觉位置；labels在视觉位置插入−100。
+
+label为−100表示不直接监督该位置，并不表示其视觉embedding没有梯度。动作预测会通过attention依赖视觉信息，梯度仍可回传到projector和encoder。LLM内部执行next-token shift，不要在数据层再手动把labels右移一次。
+
+生成第一步处理图像与完整prefix；有cache后的单tokenforward直接调用language_model，不再重算图像。保存版本对这种生成分支断言batch=1、past_key_values非空、没有labels。训练时 use_cache 会被关闭；“缓存推理可用”不意味着每种混合batch输入都支持。
+
+HF `_init_weights` 注释明确提醒该端口用于已有权重的推理/微调，其初始化不是论文从头训练的正确配方。用随机配置做代码烟雾测试可以验证shape与梯度，却不能把所得模型叫OpenVLA论文的训练复现。
+
+### RLDS 样本处理的精确监督范围【建议会】
+
+`RLDSBatchTransform.__call__` 是可调用dataclass对象：读 action[0]、image_primary[0] 和decode后的language_instruction；用prompt_builder把human问题与gpt动作字符串拼成对话；调用base tokenizer并构造input_ids/labels；把前缀labels设为−100。`predict_stop_token=True` 默认保留EOS监督，False会把最后一项也改成−100。
+
+原始动作是 `[D_a]`，编码成动作字符串后应对应D_a个token加EOS。源码用 `labels[:-(len(action)+1)]=-100`，这依赖tokenizer/对话格式的一致性；不能仅凭这个切片在任何第三方tokenizer上就认定动作标签完整对齐。demo若采用合成tokenizer，就不能声称验证了真实Llama的prompt对齐。
+
+RLDSDataset默认window_size=1、future_action_window_size=0、load_proprio=False，对应当前图像、单步动作的接口；不同后续变体的历史、本体状态与action chunk不能反推到这里。
+
+
+### 保存依赖版本中的视觉宽度核对
+
+已直接检查本地 timm 0.9.10 的 `models/vision_transformer.py` 工厂定义：DINO 的 `vit_large_patch14_reg4_dinov2` 使用 patch14、embed_dim1024；SigLIP 的 `vit_so400m_patch14_siglip_224` 使用 patch14、embed_dim1152。224/14=16，因此每侧256个patch，融合为 `[B,256,2176]`，随后映射到LLM宽度。
+
+DINO额外的CLS/register token不是这256个patch的一部分：`get_intermediate_layers` 默认 `return_prefix_tokens=False`，取出prefix后返回patch序列。官方OpenVLA取倒数第二个block输出。这是保存代码/依赖的静态核对，不是已运行原尺寸预训练模型。
+
+本地依赖来源：[timm工厂与中间层](<G:/具身/论文阅读/.venvs/openvla/Lib/site-packages/timm/models/vision_transformer.py>)。demo所用 `vit_tiny_patch16_224` 则是 embed_dim192，32×32输入得到4个patch；两个tiny骨干拼接宽度384。原模型与测试配置的patch数和宽度必须分别记录。
+
+
+### 微调配置与训练日志该怎样读【建议会】
+
+保存版 `vla-scripts/finetune.py` 的默认值：batch_size16、learning_rate0.0005、grad_accumulation_steps1、LoRA rank32、dropout0、shuffle_buffer_size100000。它们是此源码快照的默认配置，不是所有论文实验统一的设置，也不能直接照搬为8GB显存方案。
+
+LoRAConfig的 `target_modules="all-linear"` 是交给PEFT选择可匹配的线性层；`lora_alpha=min(rank,16)`，rank32时alpha16，常用缩放alpha/r为0.5。`init_lora_weights="gaussian"` 是指定适配器初始化方式。optimizer只收集requires_grad为True的参数；完整骨干仍需加载和参与前向。
+
+累计梯度时先用 `loss/grad_accumulation_steps` 反传，等指定批次数才optimizer.step/zero_grad。若使用多个进程，有效batch通常是每进程batch×进程数×累计步数，需核对最后不足一个累计周期的处理；这里没有运行原DDP脚本。
+
+日志的action accuracy是有teacher forcing条件下的token准确率；源码先去掉视觉patch引入的位置、做next-token对齐，再用 action_gt>action_token_begin_idx 选择动作监督位置。连续L1日志把预测与真实bin中心反解后比较，是归一化动作空间误差，并没有使用真机成功判定。因此训练accuracy接近100%仍不等于自回归动作或真机任务可靠。
+
+`PaddedCollatorForActionPrediction` 右padding的input_ids使用pad_token_id，labels使用−100，attention_mask由ids!=pad_token_id生成；图像tensor stack增加batch轴，字典图像则逐key stack。禁止pixel_values=None，说明该collator不处理纯文本样本。截断长度需保证动作标签没有被截掉，padding mask和loss mask也是不同概念。
+
+
+## 9. 本篇小 demo：官方类的缩小随机配置
+
+已在CPU直接调用保存仓库的 `OpenVLAConfig`、`OpenVLAForActionPrediction`、`ActionTokenizer` 与 `PaddedCollatorForActionPrediction`。HF动态加载的两个源文件在cache中的SHA-256与仓库原文件相同；没有用fake模型替换forward或generate。
+
+这是约15,855,424参数的随机配置：两侧视觉骨干均为tiny ViT，输入32×32；语言模型为两层、hidden64的Llama；保留32064个输出位置以兼容官方动作词表与29871格式token。真实原模型是预训练DINO/SigLIP+7B Llama；这次没有下载那些权重。
+
+实际shape路径：
+
+|位置|观测shape|说明|
+|---|---|---|
+|两个RGB打包|`[1,6,32,32]`|合成浮点特征输入，不是官方processor处理的照片|
+|双tiny融合|`[1,4,384]`|4个patch，192+192 feature|
+|projector输出|`[1,4,64]`|投射到缩小LLM宽度|
+|文本+动作输入ids|`[1,11]`|4个prompt位置，7个监督动作|
+|多模态logits|`[1,15,32064]`|在BOS后插入4个视觉位置|
+|collator的两样本ids/labels/mask|`[2,11]`|较短样本右侧padding|
+|collator打包pixels|`[2,6,32,32]`|这里只检查collator，不做batch2生成|
+
+一次AdamW更新前loss=10.34685；视觉/projector/语言三组梯度范数约2.0294、8.2196、7.7347，均有限非零。这支持动作监督能回传到三组参数，不证明训练收敛或视觉语义正确。没有以一次更新的结果评价原论文训练recipe。
+
+官方generate走了实际缓存生成。demo额外传入 `OnlyActionTokens` logits processor，只允许31744–31999的动作ID；这个processor是教学添加，**不是原版OpenVLA.predict_action自带的约束**。原版后处理会clip解码索引，不能把clip自动当成生成端的合法词表屏蔽。
+
+生成后调用官方predict_action返回7维数组，与独立反量化/反归一化计算逐项一致。第一维示例：ID31830 → bin中心0.3294118 → 用toy q01=−0.2、q99=0.6恢复为0.3317647。最后维mask=False，保留归一化值0.9803922。所有统计值是合成fixture，没有真实机器人物理单位。
+
+另外通过：tokenizer的−1/0/1端点测试；缺少末尾29871时官方方法补齐；两个统计集且unnorm_key=None被拒绝；collator右padding的ids=32000、labels=−100、attention=False。完整命令与对象说明见 [小demo运行记录](<G:/具身/论文阅读/OpenVLA -  An Open-Source Vision-Language-Action Model/复现/README.md>)。
+
+当前状态：官方类在缩小配置上部分成功；真实预训练7B模型、实际RLDS数据与真机实验仍未复现。原始PIL/指令字符串接口没有运行；本轮执行的是HF的已处理tensor接口。真实Llama tokenizer/图像processor格式对齐仍是下一层要验证的内容。
+
+
+## 10. 本篇结束时的掌握清单
+
+【必须会】画出pixels→双视觉feature拼接→projector→BOS后视觉序列→next-token动作→bin中心→数据统计反归一化；区分输入attention mask、labels=-100与动作统计mask；说清原模型和tiny配置、原始接口和HF接口。
+
+【建议会】LoRA默认配置与论文实验差别、token accuracy与自由生成/机器人成功率的区别、cache分支、数据集key、256边界与255中心、依赖版本和执行源码hash。
+
+【可以暂时不掌握】完整7B/64卡训练、CUDA内核、真实机器人低层控制与数据采集。
+
+|Paper ↔ Code|本轮证据|未覆盖范围|
+|---|---|---|
+|视觉融合与projector|官方HF类tiny前向的真实shape日志|原尺寸DINO/SigLIP预训练前向|
+|动作监督|官方HF forward/loss/backward，三组梯度非零|真实RLDS与原训练数据|
+|动作token|官方ActionTokenizer端点测试|真实Llama分词与完整prompt|
+|生成/后处理|官方generate/predict_action与独立计算一致|真实语言理解和控制任务|
+|collation|官方PaddedCollator的padding/labels/mask|真实数据样本读取|
+|论文实验与LoRA|原文和源码分析|尚未运行实验或LoRA|
+
+复现状态：部分成功，仅指官方类在缩小随机配置上的执行检查。完整论文未复现。未解决：真实processor和RLDS样本、PIL/字符串接口、7B预训练权重、量化与显存实测、仿真/真机、坐标/动作单位、真实微调配置。置信度较高的是本轮记录的代码行为；合成输入上的数值不证明任务能力或原模型资源要求。

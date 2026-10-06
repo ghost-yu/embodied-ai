@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-05",
+  "paper": "2302.00111v3",
+  "primary_project": "https://universal-policy.github.io/unipi/",
+  "primary_blog": "https://research.google/blog/unipi-learning-universal-policies-via-text-guided-video-generation/",
+  "website_repository": "https://github.com/universal-policy/unipi",
+  "website_tree_sha": "c93833e4ed865bf7537f7ada959a67f843666a20",
+  "tree_truncated": false,
+  "blob_count": 14,
+  "python_files": [],
+  "project_statement": "作者项目页说明原实验大部分在Google完成，源码不能发布，并推荐flow-diffusion/AVDC作为视频建模/训练基础。",
+  "recommended_code": "https://github.com/flow-diffusion/AVDC",
+  "recommended_code_identity": "另篇Learning to Act from Actionless Videos through Dense Correspondences官方实现，arxiv2310.08576；非原UniPi源码/权重。",
+  "local_demo": "本地新写教学实现，未导入或执行AVDC。",
+  "confidence_limit": "限定已查作者网页、网页仓库、项目推荐repo与原文，不代表全互联网穷尽查找。"
+}

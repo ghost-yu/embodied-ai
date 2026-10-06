@@ -1,0 +1,8 @@
+{
+  "filename": "torch-2.2.0-cp311-cp311-win_amd64.whl",
+  "url": "https://files.pythonhosted.org/packages/58/b8/51b956c2da9729390a3080397cd2f31171394543af7746681466e372f69a/torch-2.2.0-cp311-cp311-win_amd64.whl",
+  "bytes": 198571687,
+  "sha256": "03c8e660907ac1b8ee07f6d929c4e15cd95be2fb764368799cca02c725a212b8",
+  "verification": "matched PyPI JSON",
+  "chunks": 190
+}

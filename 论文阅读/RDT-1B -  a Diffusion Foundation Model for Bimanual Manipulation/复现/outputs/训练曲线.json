@@ -1,0 +1,806 @@
+[
+  {
+    "step": 0,
+    "all_slots_training_mse": 0.014289826154708862
+  },
+  {
+    "step": 1,
+    "all_slots_training_mse": 0.013547725975513458
+  },
+  {
+    "step": 2,
+    "all_slots_training_mse": 0.012394452467560768
+  },
+  {
+    "step": 3,
+    "all_slots_training_mse": 0.011363985016942024
+  },
+  {
+    "step": 4,
+    "all_slots_training_mse": 0.010622240602970123
+  },
+  {
+    "step": 5,
+    "all_slots_training_mse": 0.010349193587899208
+  },
+  {
+    "step": 6,
+    "all_slots_training_mse": 0.010436063632369041
+  },
+  {
+    "step": 7,
+    "all_slots_training_mse": 0.010569985955953598
+  },
+  {
+    "step": 8,
+    "all_slots_training_mse": 0.010321932844817638
+  },
+  {
+    "step": 9,
+    "all_slots_training_mse": 0.01007290929555893
+  },
+  {
+    "step": 10,
+    "all_slots_training_mse": 0.010047235526144505
+  },
+  {
+    "step": 11,
+    "all_slots_training_mse": 0.009678232483565807
+  },
+  {
+    "step": 12,
+    "all_slots_training_mse": 0.008858736604452133
+  },
+  {
+    "step": 13,
+    "all_slots_training_mse": 0.007568215951323509
+  },
+  {
+    "step": 14,
+    "all_slots_training_mse": 0.005347942002117634
+  },
+  {
+    "step": 15,
+    "all_slots_training_mse": 0.0020120562985539436
+  },
+  {
+    "step": 16,
+    "all_slots_training_mse": 0.0049949707463383675
+  },
+  {
+    "step": 17,
+    "all_slots_training_mse": 0.010851791128516197
+  },
+  {
+    "step": 18,
+    "all_slots_training_mse": 0.0025657163932919502
+  },
+  {
+    "step": 19,
+    "all_slots_training_mse": 0.004348166286945343
+  },
+  {
+    "step": 20,
+    "all_slots_training_mse": 0.0044472659938037395
+  },
+  {
+    "step": 21,
+    "all_slots_training_mse": 0.0017116527305915952
+  },
+  {
+    "step": 22,
+    "all_slots_training_mse": 0.0013644075952470303
+  },
+  {
+    "step": 23,
+    "all_slots_training_mse": 0.003267223946750164
+  },
+  {
+    "step": 24,
+    "all_slots_training_mse": 0.00345795345492661
+  },
+  {
+    "step": 25,
+    "all_slots_training_mse": 0.002331898547708988
+  },
+  {
+    "step": 26,
+    "all_slots_training_mse": 0.0017969331238418818
+  },
+  {
+    "step": 27,
+    "all_slots_training_mse": 0.0021616967860609293
+  },
+  {
+    "step": 28,
+    "all_slots_training_mse": 0.002270735101774335
+  },
+  {
+    "step": 29,
+    "all_slots_training_mse": 0.0019602214451879263
+  },
+  {
+    "step": 30,
+    "all_slots_training_mse": 0.00124609365593642
+  },
+  {
+    "step": 31,
+    "all_slots_training_mse": 0.001131392433308065
+  },
+  {
+    "step": 32,
+    "all_slots_training_mse": 0.0014516800874844193
+  },
+  {
+    "step": 33,
+    "all_slots_training_mse": 0.0015333000337705016
+  },
+  {
+    "step": 34,
+    "all_slots_training_mse": 0.0013593168696388602
+  },
+  {
+    "step": 35,
+    "all_slots_training_mse": 0.0009249103022739291
+  },
+  {
+    "step": 36,
+    "all_slots_training_mse": 0.0009503856999799609
+  },
+  {
+    "step": 37,
+    "all_slots_training_mse": 0.0008630751399323344
+  },
+  {
+    "step": 38,
+    "all_slots_training_mse": 0.0007258830009959638
+  },
+  {
+    "step": 39,
+    "all_slots_training_mse": 0.000649202149361372
+  },
+  {
+    "step": 40,
+    "all_slots_training_mse": 0.00044625846203416586
+  },
+  {
+    "step": 41,
+    "all_slots_training_mse": 0.0006190688582137227
+  },
+  {
+    "step": 42,
+    "all_slots_training_mse": 0.0007571325404569507
+  },
+  {
+    "step": 43,
+    "all_slots_training_mse": 0.00050744554027915
+  },
+  {
+    "step": 44,
+    "all_slots_training_mse": 0.0004065510001964867
+  },
+  {
+    "step": 45,
+    "all_slots_training_mse": 0.000349455454852432
+  },
+  {
+    "step": 46,
+    "all_slots_training_mse": 0.000382930098567158
+  },
+  {
+    "step": 47,
+    "all_slots_training_mse": 0.0004570494929794222
+  },
+  {
+    "step": 48,
+    "all_slots_training_mse": 0.00032865104731172323
+  },
+  {
+    "step": 49,
+    "all_slots_training_mse": 0.0004569117445498705
+  },
+  {
+    "step": 50,
+    "all_slots_training_mse": 0.00031483793281950057
+  },
+  {
+    "step": 51,
+    "all_slots_training_mse": 0.00030509583302773535
+  },
+  {
+    "step": 52,
+    "all_slots_training_mse": 0.0002521508140489459
+  },
+  {
+    "step": 53,
+    "all_slots_training_mse": 0.00018100650049746037
+  },
+  {
+    "step": 54,
+    "all_slots_training_mse": 0.00020607965416274965
+  },
+  {
+    "step": 55,
+    "all_slots_training_mse": 0.00031954573933035135
+  },
+  {
+    "step": 56,
+    "all_slots_training_mse": 0.00020489137386903167
+  },
+  {
+    "step": 57,
+    "all_slots_training_mse": 0.0002562699082773179
+  },
+  {
+    "step": 58,
+    "all_slots_training_mse": 0.00018689782882574946
+  },
+  {
+    "step": 59,
+    "all_slots_training_mse": 0.00012375878577586263
+  },
+  {
+    "step": 60,
+    "all_slots_training_mse": 0.00019558997882995754
+  },
+  {
+    "step": 61,
+    "all_slots_training_mse": 0.00026342476485297084
+  },
+  {
+    "step": 62,
+    "all_slots_training_mse": 0.000345818669302389
+  },
+  {
+    "step": 63,
+    "all_slots_training_mse": 0.00026194992824457586
+  },
+  {
+    "step": 64,
+    "all_slots_training_mse": 0.00019872655684594065
+  },
+  {
+    "step": 65,
+    "all_slots_training_mse": 0.00020915384811814874
+  },
+  {
+    "step": 66,
+    "all_slots_training_mse": 0.0001057785120792687
+  },
+  {
+    "step": 67,
+    "all_slots_training_mse": 0.0001600062969373539
+  },
+  {
+    "step": 68,
+    "all_slots_training_mse": 0.0001842628262238577
+  },
+  {
+    "step": 69,
+    "all_slots_training_mse": 0.00018839159747585654
+  },
+  {
+    "step": 70,
+    "all_slots_training_mse": 0.00018390771583653986
+  },
+  {
+    "step": 71,
+    "all_slots_training_mse": 0.00014857217320241034
+  },
+  {
+    "step": 72,
+    "all_slots_training_mse": 0.0001299958530580625
+  },
+  {
+    "step": 73,
+    "all_slots_training_mse": 5.2924082410754636e-05
+  },
+  {
+    "step": 74,
+    "all_slots_training_mse": 9.840077109402046e-05
+  },
+  {
+    "step": 75,
+    "all_slots_training_mse": 8.789917774265632e-05
+  },
+  {
+    "step": 76,
+    "all_slots_training_mse": 9.783770656213164e-05
+  },
+  {
+    "step": 77,
+    "all_slots_training_mse": 9.615525777917355e-05
+  },
+  {
+    "step": 78,
+    "all_slots_training_mse": 0.0001201554259750992
+  },
+  {
+    "step": 79,
+    "all_slots_training_mse": 0.00010119524085894227
+  },
+  {
+    "step": 80,
+    "all_slots_training_mse": 8.977738616522402e-05
+  },
+  {
+    "step": 81,
+    "all_slots_training_mse": 7.496996113331988e-05
+  },
+  {
+    "step": 82,
+    "all_slots_training_mse": 0.00010329044016543776
+  },
+  {
+    "step": 83,
+    "all_slots_training_mse": 3.7879548472119495e-05
+  },
+  {
+    "step": 84,
+    "all_slots_training_mse": 2.5180483135045506e-05
+  },
+  {
+    "step": 85,
+    "all_slots_training_mse": 3.7096360756549984e-05
+  },
+  {
+    "step": 86,
+    "all_slots_training_mse": 8.113824878819287e-05
+  },
+  {
+    "step": 87,
+    "all_slots_training_mse": 4.107928543817252e-05
+  },
+  {
+    "step": 88,
+    "all_slots_training_mse": 4.010624252259731e-05
+  },
+  {
+    "step": 89,
+    "all_slots_training_mse": 3.913848922820762e-05
+  },
+  {
+    "step": 90,
+    "all_slots_training_mse": 2.6542040359345265e-05
+  },
+  {
+    "step": 91,
+    "all_slots_training_mse": 6.75078117637895e-05
+  },
+  {
+    "step": 92,
+    "all_slots_training_mse": 6.167789251776412e-05
+  },
+  {
+    "step": 93,
+    "all_slots_training_mse": 5.7920580729842186e-05
+  },
+  {
+    "step": 94,
+    "all_slots_training_mse": 5.4344745876733214e-05
+  },
+  {
+    "step": 95,
+    "all_slots_training_mse": 4.187773447483778e-05
+  },
+  {
+    "step": 96,
+    "all_slots_training_mse": 9.555223368806764e-05
+  },
+  {
+    "step": 97,
+    "all_slots_training_mse": 2.6014495233539492e-05
+  },
+  {
+    "step": 98,
+    "all_slots_training_mse": 6.370357004925609e-05
+  },
+  {
+    "step": 99,
+    "all_slots_training_mse": 1.983831862162333e-05
+  },
+  {
+    "step": 100,
+    "all_slots_training_mse": 2.5265455406042747e-05
+  },
+  {
+    "step": 101,
+    "all_slots_training_mse": 3.862506855512038e-05
+  },
+  {
+    "step": 102,
+    "all_slots_training_mse": 3.572493005776778e-05
+  },
+  {
+    "step": 103,
+    "all_slots_training_mse": 3.7077657907502726e-05
+  },
+  {
+    "step": 104,
+    "all_slots_training_mse": 3.581416603992693e-05
+  },
+  {
+    "step": 105,
+    "all_slots_training_mse": 2.7547439458430745e-05
+  },
+  {
+    "step": 106,
+    "all_slots_training_mse": 6.812885112594813e-05
+  },
+  {
+    "step": 107,
+    "all_slots_training_mse": 3.4433629480190575e-05
+  },
+  {
+    "step": 108,
+    "all_slots_training_mse": 1.4987488611950539e-05
+  },
+  {
+    "step": 109,
+    "all_slots_training_mse": 6.366950401570648e-05
+  },
+  {
+    "step": 110,
+    "all_slots_training_mse": 1.010114556265762e-05
+  },
+  {
+    "step": 111,
+    "all_slots_training_mse": 4.571370664052665e-05
+  },
+  {
+    "step": 112,
+    "all_slots_training_mse": 3.087137883994728e-05
+  },
+  {
+    "step": 113,
+    "all_slots_training_mse": 4.8287307436112314e-05
+  },
+  {
+    "step": 114,
+    "all_slots_training_mse": 3.22518935718108e-05
+  },
+  {
+    "step": 115,
+    "all_slots_training_mse": 1.7062604456441477e-05
+  },
+  {
+    "step": 116,
+    "all_slots_training_mse": 4.637204256141558e-05
+  },
+  {
+    "step": 117,
+    "all_slots_training_mse": 1.1540376362972893e-05
+  },
+  {
+    "step": 118,
+    "all_slots_training_mse": 2.711826891754754e-05
+  },
+  {
+    "step": 119,
+    "all_slots_training_mse": 1.823022284952458e-05
+  },
+  {
+    "step": 120,
+    "all_slots_training_mse": 3.431114600971341e-05
+  },
+  {
+    "step": 121,
+    "all_slots_training_mse": 1.9572535165934823e-05
+  },
+  {
+    "step": 122,
+    "all_slots_training_mse": 1.065087599272374e-05
+  },
+  {
+    "step": 123,
+    "all_slots_training_mse": 2.1350442693801597e-05
+  },
+  {
+    "step": 124,
+    "all_slots_training_mse": 9.629402484279126e-06
+  },
+  {
+    "step": 125,
+    "all_slots_training_mse": 3.858731361106038e-05
+  },
+  {
+    "step": 126,
+    "all_slots_training_mse": 8.095546945696697e-06
+  },
+  {
+    "step": 127,
+    "all_slots_training_mse": 2.1797635781695135e-05
+  },
+  {
+    "step": 128,
+    "all_slots_training_mse": 9.799789950193372e-06
+  },
+  {
+    "step": 129,
+    "all_slots_training_mse": 2.800466972985305e-05
+  },
+  {
+    "step": 130,
+    "all_slots_training_mse": 9.401105671713594e-06
+  },
+  {
+    "step": 131,
+    "all_slots_training_mse": 1.775994496711064e-05
+  },
+  {
+    "step": 132,
+    "all_slots_training_mse": 1.2468588465708308e-05
+  },
+  {
+    "step": 133,
+    "all_slots_training_mse": 1.326993697148282e-05
+  },
+  {
+    "step": 134,
+    "all_slots_training_mse": 2.0114726794417948e-05
+  },
+  {
+    "step": 135,
+    "all_slots_training_mse": 1.5039001482364256e-05
+  },
+  {
+    "step": 136,
+    "all_slots_training_mse": 1.6422422049799934e-05
+  },
+  {
+    "step": 137,
+    "all_slots_training_mse": 9.435864740225952e-06
+  },
+  {
+    "step": 138,
+    "all_slots_training_mse": 1.5514446204178967e-05
+  },
+  {
+    "step": 139,
+    "all_slots_training_mse": 5.260940724838292e-06
+  },
+  {
+    "step": 140,
+    "all_slots_training_mse": 2.2509866539621726e-05
+  },
+  {
+    "step": 141,
+    "all_slots_training_mse": 7.612688932567835e-06
+  },
+  {
+    "step": 142,
+    "all_slots_training_mse": 3.783817737712525e-05
+  },
+  {
+    "step": 143,
+    "all_slots_training_mse": 2.051726187346503e-05
+  },
+  {
+    "step": 144,
+    "all_slots_training_mse": 1.6836087525007315e-05
+  },
+  {
+    "step": 145,
+    "all_slots_training_mse": 1.532273381599225e-05
+  },
+  {
+    "step": 146,
+    "all_slots_training_mse": 9.65468461799901e-06
+  },
+  {
+    "step": 147,
+    "all_slots_training_mse": 9.386184501636308e-06
+  },
+  {
+    "step": 148,
+    "all_slots_training_mse": 1.1368241757736541e-05
+  },
+  {
+    "step": 149,
+    "all_slots_training_mse": 6.070596100471448e-06
+  },
+  {
+    "step": 150,
+    "all_slots_training_mse": 1.0189796739723533e-05
+  },
+  {
+    "step": 151,
+    "all_slots_training_mse": 5.908905222895555e-06
+  },
+  {
+    "step": 152,
+    "all_slots_training_mse": 8.920596883399412e-06
+  },
+  {
+    "step": 153,
+    "all_slots_training_mse": 4.764259756484535e-06
+  },
+  {
+    "step": 154,
+    "all_slots_training_mse": 8.930354852054734e-06
+  },
+  {
+    "step": 155,
+    "all_slots_training_mse": 5.457814040710218e-06
+  },
+  {
+    "step": 156,
+    "all_slots_training_mse": 8.716534466657322e-06
+  },
+  {
+    "step": 157,
+    "all_slots_training_mse": 5.299395525071304e-06
+  },
+  {
+    "step": 158,
+    "all_slots_training_mse": 8.990537935460452e-06
+  },
+  {
+    "step": 159,
+    "all_slots_training_mse": 3.5270459193270653e-06
+  },
+  {
+    "step": 160,
+    "all_slots_training_mse": 1.0536343324929476e-05
+  },
+  {
+    "step": 161,
+    "all_slots_training_mse": 4.175828962615924e-06
+  },
+  {
+    "step": 162,
+    "all_slots_training_mse": 1.0618337910273112e-05
+  },
+  {
+    "step": 163,
+    "all_slots_training_mse": 5.8605637605069205e-06
+  },
+  {
+    "step": 164,
+    "all_slots_training_mse": 1.2333253835095093e-05
+  },
+  {
+    "step": 165,
+    "all_slots_training_mse": 4.19413026975235e-06
+  },
+  {
+    "step": 166,
+    "all_slots_training_mse": 6.621156899200287e-06
+  },
+  {
+    "step": 167,
+    "all_slots_training_mse": 4.7958578761608806e-06
+  },
+  {
+    "step": 168,
+    "all_slots_training_mse": 7.10118911229074e-06
+  },
+  {
+    "step": 169,
+    "all_slots_training_mse": 5.37964024260873e-06
+  },
+  {
+    "step": 170,
+    "all_slots_training_mse": 7.762898349028546e-06
+  },
+  {
+    "step": 171,
+    "all_slots_training_mse": 4.892095603281632e-06
+  },
+  {
+    "step": 172,
+    "all_slots_training_mse": 5.983247319818474e-06
+  },
+  {
+    "step": 173,
+    "all_slots_training_mse": 5.573795533564407e-06
+  },
+  {
+    "step": 174,
+    "all_slots_training_mse": 6.401235168596031e-06
+  },
+  {
+    "step": 175,
+    "all_slots_training_mse": 3.636410610852181e-06
+  },
+  {
+    "step": 176,
+    "all_slots_training_mse": 5.608186711469898e-06
+  },
+  {
+    "step": 177,
+    "all_slots_training_mse": 4.665072083298583e-06
+  },
+  {
+    "step": 178,
+    "all_slots_training_mse": 5.45661987416679e-06
+  },
+  {
+    "step": 179,
+    "all_slots_training_mse": 3.0272817639342975e-06
+  },
+  {
+    "step": 180,
+    "all_slots_training_mse": 3.677138465718599e-06
+  },
+  {
+    "step": 181,
+    "all_slots_training_mse": 3.491972620395245e-06
+  },
+  {
+    "step": 182,
+    "all_slots_training_mse": 4.489435923460405e-06
+  },
+  {
+    "step": 183,
+    "all_slots_training_mse": 3.253146360293613e-06
+  },
+  {
+    "step": 184,
+    "all_slots_training_mse": 5.282369784254115e-06
+  },
+  {
+    "step": 185,
+    "all_slots_training_mse": 2.9411362447717693e-06
+  },
+  {
+    "step": 186,
+    "all_slots_training_mse": 5.059038812760264e-06
+  },
+  {
+    "step": 187,
+    "all_slots_training_mse": 2.879211479012156e-06
+  },
+  {
+    "step": 188,
+    "all_slots_training_mse": 4.125318355363561e-06
+  },
+  {
+    "step": 189,
+    "all_slots_training_mse": 3.610914518503705e-06
+  },
+  {
+    "step": 190,
+    "all_slots_training_mse": 4.83679923490854e-06
+  },
+  {
+    "step": 191,
+    "all_slots_training_mse": 3.0312075978145003e-06
+  },
+  {
+    "step": 192,
+    "all_slots_training_mse": 4.738190909847617e-06
+  },
+  {
+    "step": 193,
+    "all_slots_training_mse": 3.1445611057279166e-06
+  },
+  {
+    "step": 194,
+    "all_slots_training_mse": 4.859130967815872e-06
+  },
+  {
+    "step": 195,
+    "all_slots_training_mse": 3.324146291561192e-06
+  },
+  {
+    "step": 196,
+    "all_slots_training_mse": 4.699667442764621e-06
+  },
+  {
+    "step": 197,
+    "all_slots_training_mse": 3.3654407616268145e-06
+  },
+  {
+    "step": 198,
+    "all_slots_training_mse": 5.7117340475087985e-06
+  },
+  {
+    "step": 199,
+    "all_slots_training_mse": 3.861401637550443e-06
+  },
+  {
+    "step": 200,
+    "all_slots_training_mse": 5.2676205086754635e-06
+  }
+]

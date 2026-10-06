@@ -1,0 +1,9 @@
+2026-10-03
+工作目录：G:\具身\论文阅读\RT-1 -  Robotics Transformer for Real-World Control at Scale\代码
+命令：G:\具身\论文阅读\.venvs\rt1\Scripts\python.exe -m robotics_transformer.tokenizers.token_learner_test
+观察到的终端结果：
+[ OK ] TokenLearnerTest.testTokenLearnersample_input
+Ran 1 test in 0.533s
+OK
+进程退出码：0
+本文件为终端结果摘录，不是重新执行的输出。

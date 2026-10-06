@@ -1,0 +1,17 @@
+{
+  "short": "UniPi",
+  "title": "Learning Universal Policies via Text-Guided Video Generation",
+  "arxiv": "2302.00111",
+  "repo": null,
+  "lesson": "3.2",
+  "priority": "VLA与世界模型桥梁",
+  "folder": "G:\\具身\\论文阅读\\Learning Universal Policies via Text-Guided Video Generation",
+  "version": "v3",
+  "pdf_url": "https://arxiv.org/pdf/2302.00111v3",
+  "resolved_url": "https://arxiv.org/pdf/2302.00111v3",
+  "bytes": 6171147,
+  "pages": 17,
+  "sha256": "5ded462cfcad30a6317610a4f991d3c1eca7826cbe208dbd9929c3837529708e",
+  "pdf_status": "成功",
+  "code_status": "未找到可确认的完整官方实现"
+}

@@ -1,0 +1,6 @@
+{
+  "status": "未复现",
+  "scope": "完整官方模型；教学共同训练与受限解码 demo 已跑通",
+  "date": "2026-10-03",
+  "evidence": "outputs/结果.json"
+}

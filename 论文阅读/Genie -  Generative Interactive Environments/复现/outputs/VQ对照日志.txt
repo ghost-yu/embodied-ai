@@ -1,0 +1,109 @@
+{
+  "tokenizer_pixel_mse": 0.00034769283956848085,
+  "LAM_pixel_mse": 0.0014404351823031902,
+  "LAM_code_histogram": [
+    56,
+    51,
+    34,
+    9,
+    35,
+    34,
+    0,
+    37
+  ],
+  "LAM_code_direction_counts": [
+    [
+      5,
+      3,
+      25,
+      23
+    ],
+    [
+      15,
+      36,
+      0,
+      0
+    ],
+    [
+      7,
+      19,
+      5,
+      3
+    ],
+    [
+      1,
+      4,
+      4,
+      0
+    ],
+    [
+      20,
+      10,
+      5,
+      0
+    ],
+    [
+      1,
+      2,
+      17,
+      14
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      2,
+      10,
+      24
+    ]
+  ],
+  "LAM_direction_purity_posthoc": 0.56640625,
+  "heldout_dynamics_masked_CE": 0.8963735103607178,
+  "one_step_generated_pixel_mse": 0.010424165055155754,
+  "different_code_pixel_mse": 0.013544978573918343,
+  "toy_delta_PSNR_t1_dB": 1.614593744277954,
+  "generated_visual_codes_used": [
+    0,
+    2,
+    3,
+    5,
+    6,
+    7,
+    9,
+    13,
+    14,
+    24,
+    25,
+    27,
+    30,
+    31
+  ],
+  "visual_codes_used": [
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    11,
+    13,
+    14,
+    17,
+    18,
+    22,
+    24,
+    25,
+    27,
+    30
+  ],
+  "eight_user_codes_output_pair_max_difference": 0.4129846692085266,
+  "LAM_vq_loss_weight": 0.01,
+  "wall_seconds": 63.55700421333313,
+  "scope": "same initialization and batches; only external LAM VQ loss weight changed; frozen original tokenizer"
+}

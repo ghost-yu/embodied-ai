@@ -1,0 +1,16 @@
+# @package _global_
+
+defaults:
+  - genie_redux_guided_ft_smb
+  - _self_
+
+train:
+  dataset_root_dpath: "data_generation/datasets"
+  dataset_name: "retro_act_v0.0.0_auto_explore_ai2"
+  wandb_name: "genie_redux_guided_ft_ai2"
+
+eval:
+  dataset_name: "retro_act_v0.0.0_agent57_ai2"
+
+model_fpath: ${train.save_root_dpath}/genie_redux_guided/genie_redux_guided/model-100000.pt
+tokenizer_fpath: ${train.save_root_dpath}/tokenizer/tokenizer_ft_ai2/model-15000.pt

@@ -1,0 +1,29 @@
+env: retro_act
+variant: random
+name: retro_act
+version: "0.0.0"
+game: all
+n_skip_frames: 4
+n_skip_start_frames: 0
+image_size: [64, 64]
+valid_action_combos: [RIGHT, LEFT, UP, DOWN, ACTION_JUMP]
+n_workers: 12
+view: null
+genre: [pl]
+motion: null
+platform: null
+roi_annotation_fpath: null
+annotation_behavior_fpath: annotations/RetroAct_v0.1.csv
+annotation_control_fpath: null
+action_map:
+  ACTION_JUMP: jump
+  DOWN: "none|crouch|climb"
+  UP: "climb|none"
+  LEFT: left
+  RIGHT: right
+generator_config:
+  n_instances: 1
+  n_sessions: 20
+  n_steps_max: 500
+  n_workers: 10
+  output_mode: frame

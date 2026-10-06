@@ -1,0 +1,19 @@
+{
+  "short": "RDT-1B",
+  "title": "RDT-1B: a Diffusion Foundation Model for Bimanual Manipulation",
+  "arxiv": "2410.07864",
+  "repo": "thu-ml/RoboticsDiffusionTransformer",
+  "lesson": "2.7",
+  "priority": "重点精读",
+  "folder": "G:\\具身\\论文阅读\\RDT-1B -  a Diffusion Foundation Model for Bimanual Manipulation",
+  "version": "v2",
+  "pdf_url": "https://arxiv.org/pdf/2410.07864v2",
+  "resolved_url": "https://arxiv.org/pdf/2410.07864v2",
+  "bytes": 9699239,
+  "pages": 28,
+  "sha256": "fabfa885b63f2d68b8e7868549563c346d4323a596d24ee3e43d0a62b4ef9667",
+  "pdf_status": "成功",
+  "code_status": "成功",
+  "commit": "cd79363a1387e8f81c7724d070ef7e45fd23150f",
+  "checkout": "G:\\具身\\论文阅读\\RDT-1B -  a Diffusion Foundation Model for Bimanual Manipulation\\代码\\RoboticsDiffusionTransformer"
+}

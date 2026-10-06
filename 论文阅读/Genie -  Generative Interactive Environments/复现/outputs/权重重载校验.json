@@ -1,0 +1,39 @@
+{
+  "strict_reload": true,
+  "max_abs_errors": {
+    "video": 0.0,
+    "labels_eval_only": 0.0,
+    "lam_ids": 0.0,
+    "tokenizer_reconstruction": 1.1920928955078125e-07,
+    "lam_reconstruction": 2.086162567138672e-07,
+    "one_step": 1.4901161193847656e-07,
+    "different_code_step": 1.1920928955078125e-07,
+    "all_user_codes": 2.086162567138672e-07,
+    "rollout": 2.980232238769531e-07
+  },
+  "sampling_loop_calls": 5,
+  "all_refinement_network_inputs_equal": true,
+  "sampling_input_shape": [
+    1,
+    16
+  ],
+  "steps_1_vs_5_same_token_ids": true,
+  "upstream_default_sampling_error": "TypeError: 'tuple' object cannot be interpreted as an integer",
+  "LAM_nonzero_gradient_norms": {
+    "vq._codebook.embed": 0.0019829499069601297,
+    "to_pixels_first_frame.0.weight": 0.01913505420088768,
+    "to_action_emb.1.weight": 0.0007995584746822715
+  },
+  "full_paper_reproduction": false,
+  "VQ001_reload_max_abs_errors": {
+    "video": 0.0,
+    "labels_eval_only": 0.0,
+    "lam_ids": 0.0,
+    "tokenizer_reconstruction": 1.1920928955078125e-07,
+    "lam_reconstruction": 2.384185791015625e-07,
+    "one_step": 7.450580596923828e-08,
+    "different_code_step": 8.940696716308594e-08,
+    "all_user_codes": 2.384185791015625e-07,
+    "rollout": 2.980232238769531e-07
+  }
+}

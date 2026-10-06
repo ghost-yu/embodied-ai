@@ -1,0 +1,19 @@
+defaults:
+  - /connector@connector: retro_act
+  - _self_
+
+connector:
+  variant: agent57
+  game: [SuperMarioBros-Nes]
+  annotation_control_fpath: annotations/RetroAct_v0.1_control_GenieRedux-G-50_sublist.csv
+  agent:
+    checkpoint_fpath: external/agent57_checkpoints/Agent57_SuperMarioBros-Nes.ckpt
+    gamma: 0.15
+  generator_config:
+    n_instances: 1
+    n_sessions: 10000
+    n_steps_max: 500
+    n_workers: 10
+    output_mode: frame
+
+dname: agent57_smb

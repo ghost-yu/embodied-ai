@@ -1,0 +1,98 @@
+defaults:
+  - _self_
+  - world_model: default
+  - actor_critic: default
+  - env: default
+  - datasets: default
+
+actor_critic:
+    use_original_obs: True
+
+world_model:
+  root_dpath: "checkpoints/genie/"
+  model_dname: ???
+  model_fname: ???
+  
+initialization:
+  path_to_checkpoint: null
+  load_world_model: False
+  load_actor_critic: False
+
+common:
+  name: "no_name"
+  epochs: 20
+  device: gpu
+  do_checkpoint: True
+  root_dpath: "checkpoints/auto_explore"
+  seed: 0
+  sequence_length: 20
+  resume: False # set by resume.sh script only.
+  resume_id: ???
+  resume_ckpt_id: "model_best_reward"
+
+wandb:
+  mode: online
+  project: auto_explore
+  entity: null
+  name: ${common.name}
+  group: null
+  tags: null
+  notes: null
+  resume: False
+
+collection:
+  games: [ "AdventureIslandII-Nes" ]
+  reward:
+    type: entropy
+    entropy_top_fraction: 0.25
+  train:
+    num_envs: 1
+    stop_after_epochs: 500
+    num_episodes_to_save: 10
+    config:
+      epsilon: 0.15 #this epsilon I made to 10%
+      should_sample: True
+      temperature: 1.0
+      num_steps: 500
+      burn_in: ${training.actor_critic.burn_in}
+      min_epsilon: 0.01
+      n_preds: 3
+  test:
+    num_envs: 1
+    num_episodes_to_save: ${collection.train.num_episodes_to_save}
+    config:
+      epsilon: 0.0
+      should_sample: True
+      temperature: 0.5
+      num_episodes: 1
+      burn_in: ${training.actor_critic.burn_in}
+      min_epsilon: 0.0
+      n_preds: 3
+
+training:
+  should: False
+  learning_rate: 0.0001
+  actor_critic:
+    batch_num_samples: 64
+    grad_acc_steps: 2
+    max_grad_norm: 10.0
+    start_after_epochs: 0
+    steps_per_epoch: 200
+    imagine_horizon: ${common.sequence_length}
+    burn_in: 20
+    gamma: 0.995
+    lambda_: 0.95
+    entropy_weight: 0.001
+
+evaluation:
+  should: True
+  every: 1
+  actor_critic:
+    num_episodes_to_save: ${training.actor_critic.batch_num_samples}
+    horizon: ${training.actor_critic.imagine_horizon}
+    start_after_epochs: ${training.actor_critic.start_after_epochs}
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .

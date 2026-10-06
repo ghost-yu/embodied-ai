@@ -1,0 +1,6 @@
+{
+  "status": "部分成功",
+  "scope": "官方 FiLM/TokenLearner 模块；完整 RT-1 论文未复现",
+  "evidence": "outputs/模块结果.json",
+  "date": "2026-10-03"
+}

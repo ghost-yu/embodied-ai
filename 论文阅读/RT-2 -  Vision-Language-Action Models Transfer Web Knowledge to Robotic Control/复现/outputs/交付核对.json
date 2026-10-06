@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-03",
+  "paper": "RT-2",
+  "local_links": "passed",
+  "source_and_weights_hashes": "passed",
+  "checkpoint_free_generation_metrics": "matched",
+  "full_official_reproduction": "未复现",
+  "teaching_demo": "成功跑通"
+}

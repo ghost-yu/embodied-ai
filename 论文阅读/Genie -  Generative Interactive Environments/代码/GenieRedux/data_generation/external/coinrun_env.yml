@@ -1,0 +1,16 @@
+name: coinrun
+channels:
+  - conda-forge
+  - anaconda
+dependencies:
+  - python=3.6.15
+  - opencv
+  - mpi4py==3.1.1
+  - mpich==4.2.2
+  - harfbuzz
+  - pango
+  - freeglut
+  - glew
+  - libgl
+  - libglu
+  - qt==5.15.9

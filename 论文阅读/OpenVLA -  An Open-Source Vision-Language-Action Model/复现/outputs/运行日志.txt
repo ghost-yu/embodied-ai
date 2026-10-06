@@ -1,0 +1,144 @@
+{
+  "recorded_at_local": "2026-10-04T00:05:13.447091+08:00",
+  "loaded_official_sources": {
+    "configuration_prismatic.py": {
+      "path": "C:\\Users\\hgfhg\\.cache\\huggingface\\modules\\transformers_modules\\hf\\configuration_prismatic.py",
+      "sha256": "e13181aec9e6a789f876f51b9edbb65c58fccb0e85acb47304c7824938abfd4c"
+    },
+    "modeling_prismatic.py": {
+      "path": "C:\\Users\\hgfhg\\.cache\\huggingface\\modules\\transformers_modules\\hf\\modeling_prismatic.py",
+      "sha256": "4700e595653513d81ec39d3c97ad65d7e896d1711bce78853ef75a2e2fb15dda"
+    }
+  },
+  "scope": "official HF OpenVLA classes; tiny random configuration; not pretrained 7B performance",
+  "environment": {
+    "python": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+    "torch": "2.2.0+cpu",
+    "torchvision": "0.17.0+cpu",
+    "transformers": "4.40.1",
+    "tokenizers": "0.19.1",
+    "timm": "0.9.10",
+    "numpy": "1.26.4",
+    "device": "CPU",
+    "os": "Windows-10-10.0.26200-SP0"
+  },
+  "seed": 31,
+  "repo_commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+  "source_sha256": {
+    "prismatic\\extern\\hf\\configuration_prismatic.py": "e13181aec9e6a789f876f51b9edbb65c58fccb0e85acb47304c7824938abfd4c",
+    "prismatic\\extern\\hf\\modeling_prismatic.py": "4700e595653513d81ec39d3c97ad65d7e896d1711bce78853ef75a2e2fb15dda",
+    "prismatic\\vla\\action_tokenizer.py": "b34a54c1e1d897faa246a4e42c0f1a51a61d0e508d6d71b10636259267544393",
+    "prismatic\\util\\data_utils.py": "826c7d0bd12ea35aaf5e49df088eee178df0865005aba255cda403bfb04825f5"
+  },
+  "tokenizer_probe": {
+    "encoded": "tok31999 tok31872 tok31744",
+    "ids": [
+      31999,
+      31872,
+      31744
+    ],
+    "decoded": [
+      -0.996078431372549,
+      0.0,
+      0.996078431372549
+    ]
+  },
+  "parameter_count": 15855424,
+  "vision_models": [
+    "vit_tiny_patch16_224",
+    "vit_tiny_patch16_224"
+  ],
+  "shape_trail": {
+    "fused_features": [
+      1,
+      4,
+      384
+    ],
+    "projected_features": [
+      1,
+      4,
+      64
+    ]
+  },
+  "pixel_shape": [
+    1,
+    6,
+    32,
+    32
+  ],
+  "input_ids_shape": [
+    1,
+    11
+  ],
+  "logits_shape": [
+    1,
+    15,
+    32064
+  ],
+  "loss_before_single_update": 10.346850395202637,
+  "gradient_norms": {
+    "vision": 2.029372215270996,
+    "projector": 8.219592094421387,
+    "language": 7.734743118286133
+  },
+  "optimizer_updates": 1,
+  "generated_ids": [
+    31830,
+    31751,
+    31941,
+    31747,
+    31751,
+    31941,
+    31747
+  ],
+  "normalized_actions": [
+    0.3294117647058823,
+    0.9490196078431372,
+    -0.5411764705882354,
+    0.9803921568627452,
+    0.9490196078431372,
+    -0.5411764705882354,
+    0.9803921568627452
+  ],
+  "predict_action_output": [
+    0.3317647058823529,
+    0.2847058823529412,
+    -0.21647058823529416,
+    0.4901960784313726,
+    0.5694117647058824,
+    -0.3788235294117647,
+    0.9803921568627452
+  ],
+  "collator_shapes": {
+    "pixel_values": [
+      2,
+      6,
+      32,
+      32
+    ],
+    "input_ids": [
+      2,
+      11
+    ],
+    "attention_mask": [
+      2,
+      11
+    ],
+    "labels": [
+      2,
+      11
+    ]
+  },
+  "right_padding_labels_and_attention": "passed",
+  "missing_29871_insertion": "passed",
+  "postprocess_matches_manual": "passed",
+  "ambiguous_unnorm_key": "rejected",
+  "extra_generation_constraint": "OnlyActionTokens is demo-added, not original OpenVLA default",
+  "limits": [
+    "tiny randomly initialized vision/LLM",
+    "synthetic pixels and numeric prompt IDs",
+    "synthetic statistics, not any real dataset",
+    "no pretrained weights, real data, simulation or robot evaluation"
+  ]
+}
+PASS: official forward, backward, cached generation, action tokenizer, and predict_action postprocess.

@@ -1,0 +1,19 @@
+{
+  "short": "RT-1",
+  "title": "RT-1: Robotics Transformer for Real-World Control at Scale",
+  "arxiv": "2212.06817",
+  "repo": "google-research/robotics_transformer",
+  "lesson": "2.3",
+  "priority": "发展脉络",
+  "folder": "G:\\具身\\论文阅读\\RT-1 -  Robotics Transformer for Real-World Control at Scale",
+  "version": "v2",
+  "pdf_url": "https://arxiv.org/pdf/2212.06817v2",
+  "resolved_url": "https://arxiv.org/pdf/2212.06817v2",
+  "bytes": 14672588,
+  "pages": 31,
+  "sha256": "81efe669c8fa50ffc7097886dc78a442fa7a8f7f2451684b93069cb9fbeda767",
+  "pdf_status": "成功",
+  "code_status": "成功",
+  "commit": "4569641b8111f3f402c32d8e24becd2a6e952ecc",
+  "checkout": "G:\\具身\\论文阅读\\RT-1 -  Robotics Transformer for Real-World Control at Scale\\代码\\robotics_transformer"
+}

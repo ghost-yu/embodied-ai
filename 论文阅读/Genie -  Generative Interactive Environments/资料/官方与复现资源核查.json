@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-05",
+  "paper": "2402.15391v1",
+  "official_page": "https://deepmind.google/research/publications/60474/",
+  "original_complete_official_code": "未找到可确认的完整官方实现",
+  "checked": "本地原PDF、DeepMind论文入口、PMLR论文记录、Open-Genie README和GenieRedux README",
+  "third_party_repo": "https://github.com/insait-institute/GenieRedux",
+  "third_party_commit": "bc80fe43c8370fd79ac5f9fc1719c65c52e294db",
+  "scope": "相关研究的复现框架，实际小配置核心使用；不是原Genie官方源码、权重或基准",
+  "source_changed": false,
+  "limits": "没有穷尽全网搜索，没有运行原11B/真实互联网训练集、RetroAct/CoinRun或扩展agent。"
+}

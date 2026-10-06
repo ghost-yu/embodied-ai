@@ -1,0 +1,8 @@
+{
+  "parameter_schema_load": "passed",
+  "new_process_sampling_matches": true,
+  "max_abs_error": 3.427267074584961e-07,
+  "comparison_atol": 2e-05,
+  "comparison_rtol": 1e-05,
+  "paper_reproduction": false
+}

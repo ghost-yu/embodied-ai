@@ -1,0 +1,17 @@
+{
+  "short": "Genie",
+  "title": "Genie: Generative Interactive Environments",
+  "arxiv": "2402.15391",
+  "repo": null,
+  "lesson": "世界模型3.2",
+  "priority": "通用世界模型重点",
+  "folder": "G:\\具身\\论文阅读\\Genie -  Generative Interactive Environments",
+  "version": "v1",
+  "pdf_url": "https://arxiv.org/pdf/2402.15391v1",
+  "resolved_url": "https://arxiv.org/pdf/2402.15391v1",
+  "bytes": 42346194,
+  "pages": 27,
+  "sha256": "94c63a5ced89355326706c88236591c2972ced12f3dece4f8982f020110c81f3",
+  "pdf_status": "成功",
+  "code_status": "未找到可确认的完整官方实现"
+}

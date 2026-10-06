@@ -1,0 +1,17 @@
+{
+  "short": "RT-2",
+  "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+  "arxiv": "2307.15818",
+  "repo": null,
+  "lesson": "2.5",
+  "priority": "发展脉络",
+  "folder": "G:\\具身\\论文阅读\\RT-2 -  Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+  "version": "v1",
+  "pdf_url": "https://arxiv.org/pdf/2307.15818v1",
+  "resolved_url": "https://arxiv.org/pdf/2307.15818v1",
+  "bytes": 15668163,
+  "pages": 26,
+  "sha256": "0a62dc36bbbfdea232ad45a0ab75c82e9cf535b55333ff22c02d5da1897ccac3",
+  "pdf_status": "成功",
+  "code_status": "未找到可确认的完整官方实现"
+}

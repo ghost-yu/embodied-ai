@@ -1,0 +1,76 @@
+{
+  "label": "官方核心小配置合成训练；完整I-JEPA论文未复现",
+  "seed": 109,
+  "updates": 501,
+  "torch": "2.2.0+cpu",
+  "parameters": {
+    "encoder": 116544,
+    "predictor": 31744
+  },
+  "initial_validation": {
+    "smooth_l1": 0.44948264956474304,
+    "prediction_mse": 0.9995012879371643,
+    "target_feature_std_across_images_mean": 0.11709146201610565,
+    "pooled_feature_std_across_images_mean": 0.033902607858181
+  },
+  "final_validation": {
+    "smooth_l1": 0.001121385139413178,
+    "prediction_mse": 0.002242770278826356,
+    "target_feature_std_across_images_mean": 0.02806279808282852,
+    "pooled_feature_std_across_images_mean": 0.008377548307180405
+  },
+  "shapes": {
+    "context": [
+      16,
+      10,
+      64
+    ],
+    "prediction": [
+      64,
+      12,
+      64
+    ],
+    "target": [
+      64,
+      12,
+      64
+    ]
+  },
+  "initial_gradients": {
+    "patch_embed": 0.00016003567725419998,
+    "mask_token": 0.021195733919739723,
+    "predictor_proj": 0.4667646586894989,
+    "target_has_any_grad": false
+  },
+  "EMA_independent_formula_max_error": 0.0,
+  "masked_pixel_context_max_difference": 0.0,
+  "context_target_overlap_index_count": 0,
+  "mask_batch_identity_example": [
+    0.0,
+    101.0,
+    0.0,
+    101.0,
+    1.0,
+    102.0,
+    1.0,
+    102.0,
+    2.0,
+    103.0,
+    2.0,
+    103.0,
+    3.0,
+    104.0,
+    3.0,
+    104.0
+  ],
+  "wall_seconds": 10.06732177734375,
+  "repo_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+  "source_sha256": {
+    "src\\models\\vision_transformer.py": "3dcc281b333e91dc18dd758f1f281f1042ac8fd6e652739786382577c3bd13b5",
+    "src\\masks\\multiblock.py": "0c8e64249a3e24c9268e63ab6944b00c8c1085b1c0d7587d47a4648cbd490225",
+    "src\\helper.py": "6fbb965dc553433f19ac23733de2e4b6f9df8484c088389acbbe1d1de8390643",
+    "src\\utils\\tensors.py": "9a8edd8228f9edf083baf96cb4b719387526de5c4d8bbcf8b7c6c19661efdf85",
+    "src\\utils\\schedulers.py": "91b033f3d2f0ed05431c2b4f70b57dd92760603b4f875a221a7f23c0dc3b223e",
+    "src\\utils\\distributed.py": "228ef947dcfb32d243fbcec19a66d204b3a8f938a5b02ee802a1abd3cc445775"
+  }
+}

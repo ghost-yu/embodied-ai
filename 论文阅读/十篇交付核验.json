@@ -1,0 +1,667 @@
+{
+  "date": "2026-10-05",
+  "scope": "十篇论文详细精读与小 demo 交付；排除自动驾驶；未制作整篇翻译",
+  "papers_count": 10,
+  "all_passed": true,
+  "checks_boundary": "检查当前 PDF、commit、源码/工件哈希、链接、语法和已保存运行证据；不重复训练，不将结构检查当作科学结论验证。",
+  "papers": [
+    {
+      "paper": "RT-1",
+      "scope": "官方 FiLM / TokenLearner 模块",
+      "evidence": "120 次合成训练；手算聚合及官方模块测试",
+      "limits": "未运行完整 RT-1；保存的原模型文件含 LFS 指针",
+      "checks": {
+        "pdf_bytes_match": true,
+        "pdf_sha256_match": true,
+        "pdf_pages_match": true,
+        "reading_structure": true,
+        "readme_requirements_sources": true,
+        "local_links_exist": true,
+        "demo_scripts_syntax": true,
+        "commit_matches": true,
+        "tracked_repository_files_unchanged": true,
+        "saved_source_artifact_hashes_match": true,
+        "execution_result_exists": true
+      },
+      "hash_checks": [
+        {
+          "report": "模块结果.json",
+          "path": "film_efficientnet/film_conditioning_layer.py",
+          "match": true
+        },
+        {
+          "report": "模块结果.json",
+          "path": "tokenizers/token_learner.py",
+          "match": true
+        }
+      ],
+      "notes_chars": 9733,
+      "local_links_checked": 19,
+      "missing_links": [],
+      "scripts_parsed": 2,
+      "commit": "4569641b8111f3f402c32d8e24becd2a6e952ecc",
+      "independent_reload_reports": [],
+      "original_full_paper_reproduction": "未复现",
+      "passed": true
+    },
+    {
+      "paper": "RT-2",
+      "scope": "教学共享 token 模型",
+      "evidence": "301 次共同训练；留出查询动作和问答各 13/18；权重重载",
+      "limits": "非官方模型，未验证网络知识迁移",
+      "checks": {
+        "pdf_bytes_match": true,
+        "pdf_sha256_match": true,
+        "pdf_pages_match": true,
+        "reading_structure": true,
+        "readme_requirements_sources": true,
+        "local_links_exist": true,
+        "demo_scripts_syntax": true,
+        "RT2_checkpoint_hash_matches": true,
+        "saved_source_artifact_hashes_match": true,
+        "execution_result_exists": true
+      },
+      "hash_checks": [
+        {
+          "report": "checkpoint核对.json",
+          "path": "inspect_checkpoint.py",
+          "match": true
+        },
+        {
+          "report": "checkpoint核对.json",
+          "path": "plot_demo.py",
+          "match": true
+        },
+        {
+          "report": "checkpoint核对.json",
+          "path": "rt2_recipe_demo.py",
+          "match": true
+        },
+        {
+          "report": "checkpoint核对.json",
+          "path": "toy_vla.py",
+          "match": true
+        }
+      ],
+      "notes_chars": 8486,
+      "local_links_checked": 9,
+      "missing_links": [],
+      "scripts_parsed": 4,
+      "independent_reload_reports": [
+        "checkpoint核对.json"
+      ],
+      "original_full_paper_reproduction": "未复现",
+      "passed": true
+    },
+    {
+      "paper": "OpenVLA",
+      "scope": "官方 HF 类缩小随机配置",
+      "evidence": "前向、梯度、缓存生成、动作反归一化",
+      "limits": "未加载 7B 预训练权重，未进行真实任务评估",
+      "checks": {
+        "pdf_bytes_match": true,
+        "pdf_sha256_match": true,
+        "pdf_pages_match": true,
+        "reading_structure": true,
+        "readme_requirements_sources": true,
+        "local_links_exist": true,
+        "demo_scripts_syntax": true,
+        "commit_matches": true,
+        "tracked_repository_files_unchanged": true,
+        "saved_source_artifact_hashes_match": true,
+        "actual_loaded_HF_sources_match": true,
+        "execution_result_exists": true
+      },
+      "hash_checks": [
+        {
+          "report": "结果.json",
+          "path": "prismatic\\extern\\hf\\configuration_prismatic.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "prismatic\\extern\\hf\\modeling_prismatic.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "prismatic\\vla\\action_tokenizer.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "prismatic\\util\\data_utils.py",
+          "match": true
+        }
+      ],
+      "notes_chars": 16110,
+      "local_links_checked": 26,
+      "missing_links": [],
+      "scripts_parsed": 1,
+      "commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+      "loaded_official_sources": {
+        "configuration_prismatic.py": {
+          "path": "C:\\Users\\hgfhg\\.cache\\huggingface\\modules\\transformers_modules\\hf\\configuration_prismatic.py",
+          "sha256": "e13181aec9e6a789f876f51b9edbb65c58fccb0e85acb47304c7824938abfd4c"
+        },
+        "modeling_prismatic.py": {
+          "path": "C:\\Users\\hgfhg\\.cache\\huggingface\\modules\\transformers_modules\\hf\\modeling_prismatic.py",
+          "sha256": "4700e595653513d81ec39d3c97ad65d7e896d1711bce78853ef75a2e2fb15dda"
+        }
+      },
+      "independent_reload_reports": [],
+      "original_full_paper_reproduction": "未复现",
+      "passed": true
+    },
+    {
+      "paper": "MDT",
+      "scope": "官方动作核心缩小配置",
+      "evidence": "241 次训练、DDIM 采样及独立重载",
+      "limits": "合成条件，未复现 CALVIN 或完整辅助训练任务",
+      "checks": {
+        "pdf_bytes_match": true,
+        "pdf_sha256_match": true,
+        "pdf_pages_match": true,
+        "reading_structure": true,
+        "readme_requirements_sources": true,
+        "local_links_exist": true,
+        "demo_scripts_syntax": true,
+        "commit_matches": true,
+        "tracked_repository_files_unchanged": true,
+        "saved_source_artifact_hashes_match": true,
+        "execution_result_exists": true
+      },
+      "hash_checks": [
+        {
+          "report": "结果.json",
+          "path": "mdt/models/networks/mdtv_transformer.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "mdt/models/networks/transformers/transformer_blocks.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "mdt/models/networks/transformers/position_embeddings.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "mdt/models/edm_diffusion/score_wrappers.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "mdt/models/edm_diffusion/utils.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "mdt/models/edm_diffusion/gc_sampling.py",
+          "match": true
+        }
+      ],
+      "notes_chars": 19718,
+      "local_links_checked": 23,
+      "missing_links": [],
+      "scripts_parsed": 2,
+      "commit": "e7a78e744751724d3faa5d113fe8cb5f678c052a",
+      "independent_reload_reports": [
+        "权重重载校验.json"
+      ],
+      "original_full_paper_reproduction": "未复现",
+      "passed": true
+    },
+    {
+      "paper": "RDT-1B",
+      "scope": "官方 RDTRunner 缩小配置",
+      "evidence": "201 次训练；128 维、64 步动作块；mask、ACI、采样和重载",
+      "limits": "非 1B 预训练模型；未验证双臂真实控制",
+      "checks": {
+        "pdf_bytes_match": true,
+        "pdf_sha256_match": true,
+        "pdf_pages_match": true,
+        "reading_structure": true,
+        "readme_requirements_sources": true,
+        "local_links_exist": true,
+        "demo_scripts_syntax": true,
+        "commit_matches": true,
+        "tracked_repository_files_unchanged": true,
+        "saved_source_artifact_hashes_match": true,
+        "execution_result_exists": true
+      },
+      "hash_checks": [
+        {
+          "report": "结果.json",
+          "path": "models/rdt_runner.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models/rdt/model.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models/rdt/blocks.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models/hub_mixin.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "configs/state_vec.py",
+          "match": true
+        }
+      ],
+      "notes_chars": 20265,
+      "local_links_checked": 26,
+      "missing_links": [],
+      "scripts_parsed": 2,
+      "commit": "cd79363a1387e8f81c7724d070ef7e45fd23150f",
+      "independent_reload_reports": [
+        "权重重载校验.json"
+      ],
+      "original_full_paper_reproduction": "未复现",
+      "passed": true
+    },
+    {
+      "paper": "pi0",
+      "scope": "官方 JAX 小配置及明确的视觉构造适配器",
+      "evidence": "501 次训练；flow、mask、cache、Euler 采样及独立参数重载",
+      "limits": "随机初始化及合成输入，未复现原机器人结果",
+      "checks": {
+        "pdf_bytes_match": true,
+        "pdf_sha256_match": true,
+        "pdf_pages_match": true,
+        "reading_structure": true,
+        "readme_requirements_sources": true,
+        "local_links_exist": true,
+        "demo_scripts_syntax": true,
+        "commit_matches": true,
+        "tracked_repository_files_unchanged": true,
+        "saved_source_artifact_hashes_match": true,
+        "execution_result_exists": true
+      },
+      "hash_checks": [
+        {
+          "report": "结果.json",
+          "path": "src/openpi/models/pi0.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "src/openpi/models/pi0_config.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "src/openpi/models/gemma.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "src/openpi/models/siglip.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "src/openpi/models/model.py",
+          "match": true
+        }
+      ],
+      "notes_chars": 18816,
+      "local_links_checked": 25,
+      "missing_links": [],
+      "scripts_parsed": 4,
+      "commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "independent_reload_reports": [
+        "参数重载校验.json"
+      ],
+      "original_full_paper_reproduction": "未复现",
+      "passed": true
+    },
+    {
+      "paper": "CogACT",
+      "scope": "官方 DiT-S 动作模块",
+      "evidence": "901 次训练；DDIM、CFG、历史融合及独立重载",
+      "limits": "合成采样误差仍较大；未加载完整认知骨干",
+      "checks": {
+        "pdf_bytes_match": true,
+        "pdf_sha256_match": true,
+        "pdf_pages_match": true,
+        "reading_structure": true,
+        "readme_requirements_sources": true,
+        "local_links_exist": true,
+        "demo_scripts_syntax": true,
+        "commit_matches": true,
+        "tracked_repository_files_unchanged": true,
+        "saved_source_artifact_hashes_match": true,
+        "execution_result_exists": true
+      },
+      "hash_checks": [
+        {
+          "report": "301更新试跑结果.json",
+          "path": "action_model/action_model.py",
+          "match": true
+        },
+        {
+          "report": "301更新试跑结果.json",
+          "path": "action_model/models.py",
+          "match": true
+        },
+        {
+          "report": "301更新试跑结果.json",
+          "path": "action_model/__init__.py",
+          "match": true
+        },
+        {
+          "report": "301更新试跑结果.json",
+          "path": "action_model/gaussian_diffusion.py",
+          "match": true
+        },
+        {
+          "report": "301更新试跑结果.json",
+          "path": "action_model/respace.py",
+          "match": true
+        },
+        {
+          "report": "301更新试跑结果.json",
+          "path": "sim_cogact/adaptive_ensemble.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "action_model/action_model.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "action_model/models.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "action_model/__init__.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "action_model/gaussian_diffusion.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "action_model/respace.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "sim_cogact/adaptive_ensemble.py",
+          "match": true
+        }
+      ],
+      "notes_chars": 19174,
+      "local_links_checked": 22,
+      "missing_links": [],
+      "scripts_parsed": 3,
+      "commit": "b174a1b86deedfab4d198d935207e7bb0527994e",
+      "independent_reload_reports": [
+        "权重重载校验.json"
+      ],
+      "original_full_paper_reproduction": "未复现",
+      "passed": true
+    },
+    {
+      "paper": "UniPi",
+      "scope": "教学视频计划到动作执行链",
+      "evidence": "视频扩散、补帧、逆动力学、8 步 toy 执行及重载；18/64 成功",
+      "limits": "原源码不可发布；教学执行精度不足",
+      "checks": {
+        "pdf_bytes_match": true,
+        "pdf_sha256_match": true,
+        "pdf_pages_match": true,
+        "reading_structure": true,
+        "readme_requirements_sources": true,
+        "local_links_exist": true,
+        "demo_scripts_syntax": true,
+        "saved_source_artifact_hashes_match": true,
+        "execution_result_exists": true
+      },
+      "hash_checks": [
+        {
+          "report": "交付校验.json",
+          "path": "teaching_state.pt",
+          "match": true
+        },
+        {
+          "report": "交付校验.json",
+          "path": "fixture.pt",
+          "match": true
+        },
+        {
+          "report": "交付校验.json",
+          "path": "verify_and_plot.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "key": "source_sha256",
+          "match": true
+        }
+      ],
+      "notes_chars": 19084,
+      "local_links_checked": 15,
+      "missing_links": [],
+      "scripts_parsed": 2,
+      "independent_reload_reports": [
+        "权重重载校验.json"
+      ],
+      "original_full_paper_reproduction": "未复现",
+      "passed": true
+    },
+    {
+      "paper": "Genie",
+      "scope": "第三方 GenieRedux 小配置",
+      "evidence": "tokenizer / LAM / dynamics 训练、VQ 权重对照、用户码生成及重载",
+      "limits": "潜在动作语义未证明；第三方采样循环存在正文列明的限制",
+      "checks": {
+        "pdf_bytes_match": true,
+        "pdf_sha256_match": true,
+        "pdf_pages_match": true,
+        "reading_structure": true,
+        "readme_requirements_sources": true,
+        "local_links_exist": true,
+        "demo_scripts_syntax": true,
+        "commit_matches": true,
+        "tracked_repository_files_unchanged": true,
+        "saved_source_artifact_hashes_match": true,
+        "execution_result_exists": true
+      },
+      "hash_checks": [
+        {
+          "report": "交付校验.json",
+          "path": "small_core_state.pt",
+          "match": true
+        },
+        {
+          "report": "交付校验.json",
+          "path": "fixture.pt",
+          "match": true
+        },
+        {
+          "report": "交付校验.json",
+          "path": "vq001_state.pt",
+          "match": true
+        },
+        {
+          "report": "交付校验.json",
+          "path": "vq001_fixture.pt",
+          "match": true
+        },
+        {
+          "report": "交付校验.json",
+          "path": "genie_core_demo.py",
+          "match": true
+        },
+        {
+          "report": "交付校验.json",
+          "path": "verify_and_plot.py",
+          "match": true
+        },
+        {
+          "report": "交付校验.json",
+          "path": "vq_weight_ablation.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models\\construct_model.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models\\dynamics.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models\\genie_redux.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models\\lam.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models\\tokenizer.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models\\__init__.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models\\components\\attention.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models\\components\\stvivit.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models\\components\\vector_quantize.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "models\\components\\__init__.py",
+          "match": true
+        }
+      ],
+      "notes_chars": 27709,
+      "local_links_checked": 30,
+      "missing_links": [],
+      "scripts_parsed": 3,
+      "commit": "bc80fe43c8370fd79ac5f9fc1719c65c52e294db",
+      "independent_reload_reports": [
+        "权重重载校验.json"
+      ],
+      "original_full_paper_reproduction": "未复现",
+      "passed": true
+    },
+    {
+      "paper": "I-JEPA",
+      "scope": "官方 encoder / predictor / mask / EMA 小配置",
+      "evidence": "501 次训练；梯度、无泄漏、EMA、样本顺序及独立重载",
+      "limits": "特征方差缩小；未验证 ImageNet 语义质量",
+      "checks": {
+        "pdf_bytes_match": true,
+        "pdf_sha256_match": true,
+        "pdf_pages_match": true,
+        "reading_structure": true,
+        "readme_requirements_sources": true,
+        "local_links_exist": true,
+        "demo_scripts_syntax": true,
+        "commit_matches": true,
+        "tracked_repository_files_unchanged": true,
+        "saved_source_artifact_hashes_match": true,
+        "execution_result_exists": true
+      },
+      "hash_checks": [
+        {
+          "report": "交付校验.json",
+          "path": "small_core_state.pt",
+          "match": true
+        },
+        {
+          "report": "交付校验.json",
+          "path": "fixture.pt",
+          "match": true
+        },
+        {
+          "report": "交付校验.json",
+          "path": "ijepa_demo.py",
+          "match": true
+        },
+        {
+          "report": "交付校验.json",
+          "path": "verify_and_plot.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "src\\models\\vision_transformer.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "src\\masks\\multiblock.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "src\\helper.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "src\\utils\\tensors.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "src\\utils\\schedulers.py",
+          "match": true
+        },
+        {
+          "report": "结果.json",
+          "path": "src\\utils\\distributed.py",
+          "match": true
+        }
+      ],
+      "notes_chars": 21087,
+      "local_links_checked": 23,
+      "missing_links": [],
+      "scripts_parsed": 2,
+      "commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+      "independent_reload_reports": [
+        "权重重载校验.json"
+      ],
+      "original_full_paper_reproduction": "未复现",
+      "passed": true
+    }
+  ],
+  "failures": []
+}

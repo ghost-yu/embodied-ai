@@ -1,0 +1,13 @@
+defaults:
+  - config: retro_act/pretrain
+  - _self_
+
+# Global properties
+data_dpath: datasets/
+
+hydra:
+  job:
+    chdir: false
+  output_subdir: null
+  run:
+    dir: .

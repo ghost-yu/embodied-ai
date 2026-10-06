@@ -1,0 +1,151 @@
+{
+  "reference_date": "2026-10-03",
+  "scope": "official MDT action core in small configuration, synthetic features; no full MDTVAgent/robot evaluation",
+  "environment": {
+    "python": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+    "torch": "2.2.0+cpu",
+    "numpy": "1.26.4",
+    "hydra": "1.3.2",
+    "einops": "0.8.0",
+    "device": "CPU"
+  },
+  "repo_commit": "e7a78e744751724d3faa5d113fe8cb5f678c052a",
+  "source_sha256": {
+    "mdt/models/networks/mdtv_transformer.py": "266caf793b39fb3e706fbd288288c2fbbc1a2df27f4cff092f6990efa34a8e2a",
+    "mdt/models/networks/transformers/transformer_blocks.py": "2299ec20f7b495e64fda6ab3fdaba03dc9080bf405c8c1893ba5126ec1a1e236",
+    "mdt/models/networks/transformers/position_embeddings.py": "c0c4db5ee28c5efe8f0c9d8bcddd30d20c192b10a892f3aa6d5ddfb22eda3331",
+    "mdt/models/edm_diffusion/score_wrappers.py": "e1debd9c6222be02ccd4c603073fb75e471591751b7b83418cfddca5d9050c97",
+    "mdt/models/edm_diffusion/utils.py": "ccb7806688abbfef86b781c17c871e3db3d4eee9b987f122038cc2463d41d7a3",
+    "mdt/models/edm_diffusion/gc_sampling.py": "2f935a0bca8a3462e210ec2b1b73240850b009738eb6a1dea3b58acb984a15ce"
+  },
+  "seed": 43,
+  "config": {
+    "_target_": "mdt.models.networks.mdtv_transformer.MDTVTransformer",
+    "obs_dim": 8,
+    "goal_dim": 12,
+    "device": "cpu",
+    "n_obs_token": 3,
+    "goal_conditioned": true,
+    "action_dim": 7,
+    "proprio_dim": 4,
+    "embed_dim": 64,
+    "embed_pdrob": 0.0,
+    "attn_pdrop": 0.0,
+    "resid_pdrop": 0.0,
+    "mlp_pdrop": 0.0,
+    "n_dec_layers": 2,
+    "n_enc_layers": 2,
+    "n_heads": 4,
+    "goal_seq_len": 1,
+    "obs_seq_len": 1,
+    "action_seq_len": 10,
+    "goal_drop": 0.0,
+    "bias": false,
+    "use_mlp_goal": true,
+    "use_abs_pos_emb": true,
+    "use_rot_embed": false,
+    "linear_output": true,
+    "use_ada_conditioning": true,
+    "use_noise_encoder": false,
+    "use_modality_encoder": true
+  },
+  "sigma_data": 0.5,
+  "parameter_count": 329095,
+  "shapes": {
+    "state_features": [
+      16,
+      3,
+      8
+    ],
+    "goals": [
+      16,
+      1,
+      12
+    ],
+    "action": [
+      16,
+      10,
+      7
+    ],
+    "encoder_context": [
+      16,
+      5,
+      64
+    ],
+    "sampled": [
+      2,
+      10,
+      7
+    ]
+  },
+  "wrapper_inner_target_and_combination": "passed",
+  "initial_gradient_norms": {
+    "encoder": 0.9976781606674194,
+    "decoder": 0.5177025198936462,
+    "goal_embedding": 1.68897545337677,
+    "sigma_embedding": 6.4835285229492e-06,
+    "action_output": 1.0780448913574219
+  },
+  "pos_emb_has_no_gradient_in_this_path": true,
+  "updates": 241,
+  "initial_same_conditions_new_noise_mse": {
+    "vis": 0.08448666334152222,
+    "lang": 0.08427044004201889
+  },
+  "final_same_conditions_new_noise_mse": {
+    "vis": 0.007806873414665461,
+    "lang": 0.011003104969859123
+  },
+  "sampler_steps": 10,
+  "sigma_schedule": [
+    1.0,
+    0.46415889263153076,
+    0.2154434770345688,
+    0.09999999403953552,
+    0.046415891498327255,
+    0.02154434472322464,
+    0.009999999776482582,
+    0.004641587845981121,
+    0.002154434798285365,
+    0.0009999999310821295,
+    0.0
+  ],
+  "eta0_equals_eta1_for_fixed_inputs": true,
+  "sampled_first_action_dimension": [
+    [
+      -0.43447864055633545,
+      -0.3832312226295471,
+      -0.45771467685699463,
+      -0.45193618535995483,
+      -0.4527140259742737,
+      -0.45906588435173035,
+      -0.29019007086753845,
+      -0.4633083939552307,
+      -0.46553003787994385,
+      -0.4691891670227051
+    ],
+    [
+      0.5426164865493774,
+      0.593923032283783,
+      0.4879553020000458,
+      0.6063402891159058,
+      0.516441822052002,
+      0.6206302046775818,
+      0.6311817765235901,
+      0.5990309119224548,
+      0.6241740584373474,
+      0.6499740481376648
+    ]
+  ],
+  "target_first_action_dimension": [
+    -0.7,
+    0.7
+  ],
+  "sampled_goal_pair_mse": 0.011812329292297363,
+  "limitations": [
+    "synthetic features, not image/language encoders",
+    "same 16 training conditions used for new-noise evaluation",
+    "no MGF/CLA training or full MDTVAgent construction",
+    "tiny parameters, changed noise schedule, no pretrained checkpoint or CALVIN/LIBERO"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "arch_specifier": "no-align+gelu-mlp",
+  "hf_llm_id": "meta-llama/Llama-2-7b-hf",
+  "image_resize_strategy": "letterbox",
+  "image_sizes": [
+    32,
+    32
+  ],
+  "llm_backbone_id": "llama2-7b-pure",
+  "llm_max_length": 2048,
+  "model_type": "openvla",
+  "n_action_bins": 256,
+  "norm_stats": {
+    "toy": {
+      "action": {
+        "mask": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "q01": [
+          -0.2,
+          -0.3,
+          -0.4,
+          -0.5,
+          -0.6,
+          -0.7,
+          0.0
+        ],
+        "q99": [
+          0.6,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          1.0
+        ]
+      }
+    }
+  },
+  "output_projector_states": false,
+  "pad_to_multiple_of": 64,
+  "pad_token_id": 32000,
+  "text_config": {
+    "hidden_size": 64,
+    "intermediate_size": 128,
+    "max_position_embeddings": 128,
+    "model_type": "llama",
+    "num_attention_heads": 4,
+    "num_hidden_layers": 2,
+    "num_key_value_heads": 4,
+    "pad_token_id": 32000,
+    "vocab_size": 32064
+  },
+  "timm_model_ids": [
+    "vit_tiny_patch16_224",
+    "vit_tiny_patch16_224"
+  ],
+  "timm_override_act_layers": [
+    null,
+    null
+  ],
+  "transformers_version": "4.40.1",
+  "use_fused_vision_backbone": true,
+  "vision_backbone_id": "dinosiglip-vit-so-224px"
+}

@@ -1,0 +1,1207 @@
+[
+  {
+    "step": 0,
+    "modality": "vis",
+    "inner_target_loss": 0.7830795049667358
+  },
+  {
+    "step": 1,
+    "modality": "lang",
+    "inner_target_loss": 0.7879793047904968
+  },
+  {
+    "step": 2,
+    "modality": "vis",
+    "inner_target_loss": 0.9127609133720398
+  },
+  {
+    "step": 3,
+    "modality": "lang",
+    "inner_target_loss": 0.8093125224113464
+  },
+  {
+    "step": 4,
+    "modality": "vis",
+    "inner_target_loss": 0.7074902653694153
+  },
+  {
+    "step": 5,
+    "modality": "lang",
+    "inner_target_loss": 0.7421882748603821
+  },
+  {
+    "step": 6,
+    "modality": "vis",
+    "inner_target_loss": 0.762624204158783
+  },
+  {
+    "step": 7,
+    "modality": "lang",
+    "inner_target_loss": 0.5690672993659973
+  },
+  {
+    "step": 8,
+    "modality": "vis",
+    "inner_target_loss": 0.5998779535293579
+  },
+  {
+    "step": 9,
+    "modality": "lang",
+    "inner_target_loss": 0.7296081781387329
+  },
+  {
+    "step": 10,
+    "modality": "vis",
+    "inner_target_loss": 0.6165226101875305
+  },
+  {
+    "step": 11,
+    "modality": "lang",
+    "inner_target_loss": 0.5336818695068359
+  },
+  {
+    "step": 12,
+    "modality": "vis",
+    "inner_target_loss": 0.5581390261650085
+  },
+  {
+    "step": 13,
+    "modality": "lang",
+    "inner_target_loss": 0.5271551012992859
+  },
+  {
+    "step": 14,
+    "modality": "vis",
+    "inner_target_loss": 0.4747294783592224
+  },
+  {
+    "step": 15,
+    "modality": "lang",
+    "inner_target_loss": 0.5899842381477356
+  },
+  {
+    "step": 16,
+    "modality": "vis",
+    "inner_target_loss": 0.5378987193107605
+  },
+  {
+    "step": 17,
+    "modality": "lang",
+    "inner_target_loss": 0.39916807413101196
+  },
+  {
+    "step": 18,
+    "modality": "vis",
+    "inner_target_loss": 0.4072350263595581
+  },
+  {
+    "step": 19,
+    "modality": "lang",
+    "inner_target_loss": 0.39967820048332214
+  },
+  {
+    "step": 20,
+    "modality": "vis",
+    "inner_target_loss": 0.3507661521434784
+  },
+  {
+    "step": 21,
+    "modality": "lang",
+    "inner_target_loss": 0.4044669568538666
+  },
+  {
+    "step": 22,
+    "modality": "vis",
+    "inner_target_loss": 0.262948602437973
+  },
+  {
+    "step": 23,
+    "modality": "lang",
+    "inner_target_loss": 0.2702426016330719
+  },
+  {
+    "step": 24,
+    "modality": "vis",
+    "inner_target_loss": 0.29338425397872925
+  },
+  {
+    "step": 25,
+    "modality": "lang",
+    "inner_target_loss": 0.257534384727478
+  },
+  {
+    "step": 26,
+    "modality": "vis",
+    "inner_target_loss": 0.28810447454452515
+  },
+  {
+    "step": 27,
+    "modality": "lang",
+    "inner_target_loss": 0.2530645728111267
+  },
+  {
+    "step": 28,
+    "modality": "vis",
+    "inner_target_loss": 0.26215311884880066
+  },
+  {
+    "step": 29,
+    "modality": "lang",
+    "inner_target_loss": 0.26653385162353516
+  },
+  {
+    "step": 30,
+    "modality": "vis",
+    "inner_target_loss": 0.25501713156700134
+  },
+  {
+    "step": 31,
+    "modality": "lang",
+    "inner_target_loss": 0.2573319673538208
+  },
+  {
+    "step": 32,
+    "modality": "vis",
+    "inner_target_loss": 0.24536579847335815
+  },
+  {
+    "step": 33,
+    "modality": "lang",
+    "inner_target_loss": 0.2346585988998413
+  },
+  {
+    "step": 34,
+    "modality": "vis",
+    "inner_target_loss": 0.23279738426208496
+  },
+  {
+    "step": 35,
+    "modality": "lang",
+    "inner_target_loss": 0.21808932721614838
+  },
+  {
+    "step": 36,
+    "modality": "vis",
+    "inner_target_loss": 0.20775945484638214
+  },
+  {
+    "step": 37,
+    "modality": "lang",
+    "inner_target_loss": 0.21744529902935028
+  },
+  {
+    "step": 38,
+    "modality": "vis",
+    "inner_target_loss": 0.2575699985027313
+  },
+  {
+    "step": 39,
+    "modality": "lang",
+    "inner_target_loss": 0.21389424800872803
+  },
+  {
+    "step": 40,
+    "modality": "vis",
+    "inner_target_loss": 0.2554141581058502
+  },
+  {
+    "step": 41,
+    "modality": "lang",
+    "inner_target_loss": 0.2337511032819748
+  },
+  {
+    "step": 42,
+    "modality": "vis",
+    "inner_target_loss": 0.2060817927122116
+  },
+  {
+    "step": 43,
+    "modality": "lang",
+    "inner_target_loss": 0.2131984978914261
+  },
+  {
+    "step": 44,
+    "modality": "vis",
+    "inner_target_loss": 0.23122422397136688
+  },
+  {
+    "step": 45,
+    "modality": "lang",
+    "inner_target_loss": 0.21404729783535004
+  },
+  {
+    "step": 46,
+    "modality": "vis",
+    "inner_target_loss": 0.20777903497219086
+  },
+  {
+    "step": 47,
+    "modality": "lang",
+    "inner_target_loss": 0.24368640780448914
+  },
+  {
+    "step": 48,
+    "modality": "vis",
+    "inner_target_loss": 0.23008044064044952
+  },
+  {
+    "step": 49,
+    "modality": "lang",
+    "inner_target_loss": 0.2430344671010971
+  },
+  {
+    "step": 50,
+    "modality": "vis",
+    "inner_target_loss": 0.2331366091966629
+  },
+  {
+    "step": 51,
+    "modality": "lang",
+    "inner_target_loss": 0.24720309674739838
+  },
+  {
+    "step": 52,
+    "modality": "vis",
+    "inner_target_loss": 0.2043231725692749
+  },
+  {
+    "step": 53,
+    "modality": "lang",
+    "inner_target_loss": 0.24335841834545135
+  },
+  {
+    "step": 54,
+    "modality": "vis",
+    "inner_target_loss": 0.2122790366411209
+  },
+  {
+    "step": 55,
+    "modality": "lang",
+    "inner_target_loss": 0.1938450038433075
+  },
+  {
+    "step": 56,
+    "modality": "vis",
+    "inner_target_loss": 0.2612442076206207
+  },
+  {
+    "step": 57,
+    "modality": "lang",
+    "inner_target_loss": 0.22783270478248596
+  },
+  {
+    "step": 58,
+    "modality": "vis",
+    "inner_target_loss": 0.2327512949705124
+  },
+  {
+    "step": 59,
+    "modality": "lang",
+    "inner_target_loss": 0.22504261136054993
+  },
+  {
+    "step": 60,
+    "modality": "vis",
+    "inner_target_loss": 0.22173398733139038
+  },
+  {
+    "step": 61,
+    "modality": "lang",
+    "inner_target_loss": 0.25613081455230713
+  },
+  {
+    "step": 62,
+    "modality": "vis",
+    "inner_target_loss": 0.20098944008350372
+  },
+  {
+    "step": 63,
+    "modality": "lang",
+    "inner_target_loss": 0.23526011407375336
+  },
+  {
+    "step": 64,
+    "modality": "vis",
+    "inner_target_loss": 0.20859740674495697
+  },
+  {
+    "step": 65,
+    "modality": "lang",
+    "inner_target_loss": 0.2563192844390869
+  },
+  {
+    "step": 66,
+    "modality": "vis",
+    "inner_target_loss": 0.22175180912017822
+  },
+  {
+    "step": 67,
+    "modality": "lang",
+    "inner_target_loss": 0.20575754344463348
+  },
+  {
+    "step": 68,
+    "modality": "vis",
+    "inner_target_loss": 0.20730657875537872
+  },
+  {
+    "step": 69,
+    "modality": "lang",
+    "inner_target_loss": 0.22788794338703156
+  },
+  {
+    "step": 70,
+    "modality": "vis",
+    "inner_target_loss": 0.2235221564769745
+  },
+  {
+    "step": 71,
+    "modality": "lang",
+    "inner_target_loss": 0.23055490851402283
+  },
+  {
+    "step": 72,
+    "modality": "vis",
+    "inner_target_loss": 0.23895542323589325
+  },
+  {
+    "step": 73,
+    "modality": "lang",
+    "inner_target_loss": 0.22327081859111786
+  },
+  {
+    "step": 74,
+    "modality": "vis",
+    "inner_target_loss": 0.22564105689525604
+  },
+  {
+    "step": 75,
+    "modality": "lang",
+    "inner_target_loss": 0.22803600132465363
+  },
+  {
+    "step": 76,
+    "modality": "vis",
+    "inner_target_loss": 0.22529420256614685
+  },
+  {
+    "step": 77,
+    "modality": "lang",
+    "inner_target_loss": 0.19349904358386993
+  },
+  {
+    "step": 78,
+    "modality": "vis",
+    "inner_target_loss": 0.18532907962799072
+  },
+  {
+    "step": 79,
+    "modality": "lang",
+    "inner_target_loss": 0.219599649310112
+  },
+  {
+    "step": 80,
+    "modality": "vis",
+    "inner_target_loss": 0.21307620406150818
+  },
+  {
+    "step": 81,
+    "modality": "lang",
+    "inner_target_loss": 0.2379755824804306
+  },
+  {
+    "step": 82,
+    "modality": "vis",
+    "inner_target_loss": 0.22296425700187683
+  },
+  {
+    "step": 83,
+    "modality": "lang",
+    "inner_target_loss": 0.226957768201828
+  },
+  {
+    "step": 84,
+    "modality": "vis",
+    "inner_target_loss": 0.20755060017108917
+  },
+  {
+    "step": 85,
+    "modality": "lang",
+    "inner_target_loss": 0.19031599164009094
+  },
+  {
+    "step": 86,
+    "modality": "vis",
+    "inner_target_loss": 0.21360427141189575
+  },
+  {
+    "step": 87,
+    "modality": "lang",
+    "inner_target_loss": 0.22520223259925842
+  },
+  {
+    "step": 88,
+    "modality": "vis",
+    "inner_target_loss": 0.20210810005664825
+  },
+  {
+    "step": 89,
+    "modality": "lang",
+    "inner_target_loss": 0.22386477887630463
+  },
+  {
+    "step": 90,
+    "modality": "vis",
+    "inner_target_loss": 0.20294085144996643
+  },
+  {
+    "step": 91,
+    "modality": "lang",
+    "inner_target_loss": 0.23634076118469238
+  },
+  {
+    "step": 92,
+    "modality": "vis",
+    "inner_target_loss": 0.16858236491680145
+  },
+  {
+    "step": 93,
+    "modality": "lang",
+    "inner_target_loss": 0.19427601993083954
+  },
+  {
+    "step": 94,
+    "modality": "vis",
+    "inner_target_loss": 0.1999092400074005
+  },
+  {
+    "step": 95,
+    "modality": "lang",
+    "inner_target_loss": 0.2016880363225937
+  },
+  {
+    "step": 96,
+    "modality": "vis",
+    "inner_target_loss": 0.17643208801746368
+  },
+  {
+    "step": 97,
+    "modality": "lang",
+    "inner_target_loss": 0.20252947509288788
+  },
+  {
+    "step": 98,
+    "modality": "vis",
+    "inner_target_loss": 0.20329530537128448
+  },
+  {
+    "step": 99,
+    "modality": "lang",
+    "inner_target_loss": 0.22141748666763306
+  },
+  {
+    "step": 100,
+    "modality": "vis",
+    "inner_target_loss": 0.1939278244972229
+  },
+  {
+    "step": 101,
+    "modality": "lang",
+    "inner_target_loss": 0.20527274906635284
+  },
+  {
+    "step": 102,
+    "modality": "vis",
+    "inner_target_loss": 0.1787712723016739
+  },
+  {
+    "step": 103,
+    "modality": "lang",
+    "inner_target_loss": 0.1953212320804596
+  },
+  {
+    "step": 104,
+    "modality": "vis",
+    "inner_target_loss": 0.23043599724769592
+  },
+  {
+    "step": 105,
+    "modality": "lang",
+    "inner_target_loss": 0.1889243870973587
+  },
+  {
+    "step": 106,
+    "modality": "vis",
+    "inner_target_loss": 0.20764058828353882
+  },
+  {
+    "step": 107,
+    "modality": "lang",
+    "inner_target_loss": 0.20322777330875397
+  },
+  {
+    "step": 108,
+    "modality": "vis",
+    "inner_target_loss": 0.23086188733577728
+  },
+  {
+    "step": 109,
+    "modality": "lang",
+    "inner_target_loss": 0.19619710743427277
+  },
+  {
+    "step": 110,
+    "modality": "vis",
+    "inner_target_loss": 0.19924955070018768
+  },
+  {
+    "step": 111,
+    "modality": "lang",
+    "inner_target_loss": 0.2406618893146515
+  },
+  {
+    "step": 112,
+    "modality": "vis",
+    "inner_target_loss": 0.2510540187358856
+  },
+  {
+    "step": 113,
+    "modality": "lang",
+    "inner_target_loss": 0.23352573812007904
+  },
+  {
+    "step": 114,
+    "modality": "vis",
+    "inner_target_loss": 0.18046608567237854
+  },
+  {
+    "step": 115,
+    "modality": "lang",
+    "inner_target_loss": 0.18134380877017975
+  },
+  {
+    "step": 116,
+    "modality": "vis",
+    "inner_target_loss": 0.19304537773132324
+  },
+  {
+    "step": 117,
+    "modality": "lang",
+    "inner_target_loss": 0.2085496187210083
+  },
+  {
+    "step": 118,
+    "modality": "vis",
+    "inner_target_loss": 0.18960557878017426
+  },
+  {
+    "step": 119,
+    "modality": "lang",
+    "inner_target_loss": 0.2500688135623932
+  },
+  {
+    "step": 120,
+    "modality": "vis",
+    "inner_target_loss": 0.1829167753458023
+  },
+  {
+    "step": 121,
+    "modality": "lang",
+    "inner_target_loss": 0.2610454261302948
+  },
+  {
+    "step": 122,
+    "modality": "vis",
+    "inner_target_loss": 0.19778180122375488
+  },
+  {
+    "step": 123,
+    "modality": "lang",
+    "inner_target_loss": 0.21911336481571198
+  },
+  {
+    "step": 124,
+    "modality": "vis",
+    "inner_target_loss": 0.21536745131015778
+  },
+  {
+    "step": 125,
+    "modality": "lang",
+    "inner_target_loss": 0.19024714827537537
+  },
+  {
+    "step": 126,
+    "modality": "vis",
+    "inner_target_loss": 0.19828088581562042
+  },
+  {
+    "step": 127,
+    "modality": "lang",
+    "inner_target_loss": 0.20224519073963165
+  },
+  {
+    "step": 128,
+    "modality": "vis",
+    "inner_target_loss": 0.25720199942588806
+  },
+  {
+    "step": 129,
+    "modality": "lang",
+    "inner_target_loss": 0.19574086368083954
+  },
+  {
+    "step": 130,
+    "modality": "vis",
+    "inner_target_loss": 0.25237563252449036
+  },
+  {
+    "step": 131,
+    "modality": "lang",
+    "inner_target_loss": 0.21580849587917328
+  },
+  {
+    "step": 132,
+    "modality": "vis",
+    "inner_target_loss": 0.1944919228553772
+  },
+  {
+    "step": 133,
+    "modality": "lang",
+    "inner_target_loss": 0.23244453966617584
+  },
+  {
+    "step": 134,
+    "modality": "vis",
+    "inner_target_loss": 0.20590662956237793
+  },
+  {
+    "step": 135,
+    "modality": "lang",
+    "inner_target_loss": 0.22795937955379486
+  },
+  {
+    "step": 136,
+    "modality": "vis",
+    "inner_target_loss": 0.19662295281887054
+  },
+  {
+    "step": 137,
+    "modality": "lang",
+    "inner_target_loss": 0.21532538533210754
+  },
+  {
+    "step": 138,
+    "modality": "vis",
+    "inner_target_loss": 0.2730919420719147
+  },
+  {
+    "step": 139,
+    "modality": "lang",
+    "inner_target_loss": 0.19736768305301666
+  },
+  {
+    "step": 140,
+    "modality": "vis",
+    "inner_target_loss": 0.22132284939289093
+  },
+  {
+    "step": 141,
+    "modality": "lang",
+    "inner_target_loss": 0.19497254490852356
+  },
+  {
+    "step": 142,
+    "modality": "vis",
+    "inner_target_loss": 0.1765797883272171
+  },
+  {
+    "step": 143,
+    "modality": "lang",
+    "inner_target_loss": 0.17643842101097107
+  },
+  {
+    "step": 144,
+    "modality": "vis",
+    "inner_target_loss": 0.1903020739555359
+  },
+  {
+    "step": 145,
+    "modality": "lang",
+    "inner_target_loss": 0.21452490985393524
+  },
+  {
+    "step": 146,
+    "modality": "vis",
+    "inner_target_loss": 0.1871791034936905
+  },
+  {
+    "step": 147,
+    "modality": "lang",
+    "inner_target_loss": 0.1945653110742569
+  },
+  {
+    "step": 148,
+    "modality": "vis",
+    "inner_target_loss": 0.19181056320667267
+  },
+  {
+    "step": 149,
+    "modality": "lang",
+    "inner_target_loss": 0.15932877361774445
+  },
+  {
+    "step": 150,
+    "modality": "vis",
+    "inner_target_loss": 0.2050192952156067
+  },
+  {
+    "step": 151,
+    "modality": "lang",
+    "inner_target_loss": 0.1740720123052597
+  },
+  {
+    "step": 152,
+    "modality": "vis",
+    "inner_target_loss": 0.16312363743782043
+  },
+  {
+    "step": 153,
+    "modality": "lang",
+    "inner_target_loss": 0.15276429057121277
+  },
+  {
+    "step": 154,
+    "modality": "vis",
+    "inner_target_loss": 0.18071727454662323
+  },
+  {
+    "step": 155,
+    "modality": "lang",
+    "inner_target_loss": 0.14775964617729187
+  },
+  {
+    "step": 156,
+    "modality": "vis",
+    "inner_target_loss": 0.16600076854228973
+  },
+  {
+    "step": 157,
+    "modality": "lang",
+    "inner_target_loss": 0.19854143261909485
+  },
+  {
+    "step": 158,
+    "modality": "vis",
+    "inner_target_loss": 0.16223473846912384
+  },
+  {
+    "step": 159,
+    "modality": "lang",
+    "inner_target_loss": 0.21274612843990326
+  },
+  {
+    "step": 160,
+    "modality": "vis",
+    "inner_target_loss": 0.1936730593442917
+  },
+  {
+    "step": 161,
+    "modality": "lang",
+    "inner_target_loss": 0.2253221571445465
+  },
+  {
+    "step": 162,
+    "modality": "vis",
+    "inner_target_loss": 0.16727323830127716
+  },
+  {
+    "step": 163,
+    "modality": "lang",
+    "inner_target_loss": 0.21355095505714417
+  },
+  {
+    "step": 164,
+    "modality": "vis",
+    "inner_target_loss": 0.20010095834732056
+  },
+  {
+    "step": 165,
+    "modality": "lang",
+    "inner_target_loss": 0.18161380290985107
+  },
+  {
+    "step": 166,
+    "modality": "vis",
+    "inner_target_loss": 0.19435639679431915
+  },
+  {
+    "step": 167,
+    "modality": "lang",
+    "inner_target_loss": 0.19330760836601257
+  },
+  {
+    "step": 168,
+    "modality": "vis",
+    "inner_target_loss": 0.1563515067100525
+  },
+  {
+    "step": 169,
+    "modality": "lang",
+    "inner_target_loss": 0.1465325504541397
+  },
+  {
+    "step": 170,
+    "modality": "vis",
+    "inner_target_loss": 0.164468452334404
+  },
+  {
+    "step": 171,
+    "modality": "lang",
+    "inner_target_loss": 0.13403767347335815
+  },
+  {
+    "step": 172,
+    "modality": "vis",
+    "inner_target_loss": 0.13041678071022034
+  },
+  {
+    "step": 173,
+    "modality": "lang",
+    "inner_target_loss": 0.16476178169250488
+  },
+  {
+    "step": 174,
+    "modality": "vis",
+    "inner_target_loss": 0.14379118382930756
+  },
+  {
+    "step": 175,
+    "modality": "lang",
+    "inner_target_loss": 0.17359301447868347
+  },
+  {
+    "step": 176,
+    "modality": "vis",
+    "inner_target_loss": 0.19225478172302246
+  },
+  {
+    "step": 177,
+    "modality": "lang",
+    "inner_target_loss": 0.16733263432979584
+  },
+  {
+    "step": 178,
+    "modality": "vis",
+    "inner_target_loss": 0.13849148154258728
+  },
+  {
+    "step": 179,
+    "modality": "lang",
+    "inner_target_loss": 0.1473190039396286
+  },
+  {
+    "step": 180,
+    "modality": "vis",
+    "inner_target_loss": 0.15631182491779327
+  },
+  {
+    "step": 181,
+    "modality": "lang",
+    "inner_target_loss": 0.1634906679391861
+  },
+  {
+    "step": 182,
+    "modality": "vis",
+    "inner_target_loss": 0.13397222757339478
+  },
+  {
+    "step": 183,
+    "modality": "lang",
+    "inner_target_loss": 0.14949055016040802
+  },
+  {
+    "step": 184,
+    "modality": "vis",
+    "inner_target_loss": 0.1421116292476654
+  },
+  {
+    "step": 185,
+    "modality": "lang",
+    "inner_target_loss": 0.14960798621177673
+  },
+  {
+    "step": 186,
+    "modality": "vis",
+    "inner_target_loss": 0.13684113323688507
+  },
+  {
+    "step": 187,
+    "modality": "lang",
+    "inner_target_loss": 0.14685824513435364
+  },
+  {
+    "step": 188,
+    "modality": "vis",
+    "inner_target_loss": 0.1255616545677185
+  },
+  {
+    "step": 189,
+    "modality": "lang",
+    "inner_target_loss": 0.16112414002418518
+  },
+  {
+    "step": 190,
+    "modality": "vis",
+    "inner_target_loss": 0.1349903792142868
+  },
+  {
+    "step": 191,
+    "modality": "lang",
+    "inner_target_loss": 0.143575981259346
+  },
+  {
+    "step": 192,
+    "modality": "vis",
+    "inner_target_loss": 0.131693035364151
+  },
+  {
+    "step": 193,
+    "modality": "lang",
+    "inner_target_loss": 0.09606579691171646
+  },
+  {
+    "step": 194,
+    "modality": "vis",
+    "inner_target_loss": 0.12490877509117126
+  },
+  {
+    "step": 195,
+    "modality": "lang",
+    "inner_target_loss": 0.14334598183631897
+  },
+  {
+    "step": 196,
+    "modality": "vis",
+    "inner_target_loss": 0.13895119726657867
+  },
+  {
+    "step": 197,
+    "modality": "lang",
+    "inner_target_loss": 0.14443831145763397
+  },
+  {
+    "step": 198,
+    "modality": "vis",
+    "inner_target_loss": 0.12031015753746033
+  },
+  {
+    "step": 199,
+    "modality": "lang",
+    "inner_target_loss": 0.10778237879276276
+  },
+  {
+    "step": 200,
+    "modality": "vis",
+    "inner_target_loss": 0.11237338930368423
+  },
+  {
+    "step": 201,
+    "modality": "lang",
+    "inner_target_loss": 0.09731694310903549
+  },
+  {
+    "step": 202,
+    "modality": "vis",
+    "inner_target_loss": 0.11566053330898285
+  },
+  {
+    "step": 203,
+    "modality": "lang",
+    "inner_target_loss": 0.13424575328826904
+  },
+  {
+    "step": 204,
+    "modality": "vis",
+    "inner_target_loss": 0.1791776716709137
+  },
+  {
+    "step": 205,
+    "modality": "lang",
+    "inner_target_loss": 0.1501181572675705
+  },
+  {
+    "step": 206,
+    "modality": "vis",
+    "inner_target_loss": 0.1540142297744751
+  },
+  {
+    "step": 207,
+    "modality": "lang",
+    "inner_target_loss": 0.14130163192749023
+  },
+  {
+    "step": 208,
+    "modality": "vis",
+    "inner_target_loss": 0.12352902442216873
+  },
+  {
+    "step": 209,
+    "modality": "lang",
+    "inner_target_loss": 0.1696394830942154
+  },
+  {
+    "step": 210,
+    "modality": "vis",
+    "inner_target_loss": 0.139353409409523
+  },
+  {
+    "step": 211,
+    "modality": "lang",
+    "inner_target_loss": 0.11967054009437561
+  },
+  {
+    "step": 212,
+    "modality": "vis",
+    "inner_target_loss": 0.12968215346336365
+  },
+  {
+    "step": 213,
+    "modality": "lang",
+    "inner_target_loss": 0.11418622732162476
+  },
+  {
+    "step": 214,
+    "modality": "vis",
+    "inner_target_loss": 0.11750531941652298
+  },
+  {
+    "step": 215,
+    "modality": "lang",
+    "inner_target_loss": 0.16421762108802795
+  },
+  {
+    "step": 216,
+    "modality": "vis",
+    "inner_target_loss": 0.0925629660487175
+  },
+  {
+    "step": 217,
+    "modality": "lang",
+    "inner_target_loss": 0.10161125659942627
+  },
+  {
+    "step": 218,
+    "modality": "vis",
+    "inner_target_loss": 0.1470087319612503
+  },
+  {
+    "step": 219,
+    "modality": "lang",
+    "inner_target_loss": 0.13933907449245453
+  },
+  {
+    "step": 220,
+    "modality": "vis",
+    "inner_target_loss": 0.09653390944004059
+  },
+  {
+    "step": 221,
+    "modality": "lang",
+    "inner_target_loss": 0.13422974944114685
+  },
+  {
+    "step": 222,
+    "modality": "vis",
+    "inner_target_loss": 0.1609959453344345
+  },
+  {
+    "step": 223,
+    "modality": "lang",
+    "inner_target_loss": 0.13261066377162933
+  },
+  {
+    "step": 224,
+    "modality": "vis",
+    "inner_target_loss": 0.11433801800012589
+  },
+  {
+    "step": 225,
+    "modality": "lang",
+    "inner_target_loss": 0.14621758460998535
+  },
+  {
+    "step": 226,
+    "modality": "vis",
+    "inner_target_loss": 0.11575006693601608
+  },
+  {
+    "step": 227,
+    "modality": "lang",
+    "inner_target_loss": 0.10166525095701218
+  },
+  {
+    "step": 228,
+    "modality": "vis",
+    "inner_target_loss": 0.11009833216667175
+  },
+  {
+    "step": 229,
+    "modality": "lang",
+    "inner_target_loss": 0.14279213547706604
+  },
+  {
+    "step": 230,
+    "modality": "vis",
+    "inner_target_loss": 0.12420933693647385
+  },
+  {
+    "step": 231,
+    "modality": "lang",
+    "inner_target_loss": 0.1194281205534935
+  },
+  {
+    "step": 232,
+    "modality": "vis",
+    "inner_target_loss": 0.11319185048341751
+  },
+  {
+    "step": 233,
+    "modality": "lang",
+    "inner_target_loss": 0.10616838932037354
+  },
+  {
+    "step": 234,
+    "modality": "vis",
+    "inner_target_loss": 0.0714728906750679
+  },
+  {
+    "step": 235,
+    "modality": "lang",
+    "inner_target_loss": 0.11040982604026794
+  },
+  {
+    "step": 236,
+    "modality": "vis",
+    "inner_target_loss": 0.08903428912162781
+  },
+  {
+    "step": 237,
+    "modality": "lang",
+    "inner_target_loss": 0.07309157401323318
+  },
+  {
+    "step": 238,
+    "modality": "vis",
+    "inner_target_loss": 0.10066341608762741
+  },
+  {
+    "step": 239,
+    "modality": "lang",
+    "inner_target_loss": 0.09380379319190979
+  },
+  {
+    "step": 240,
+    "modality": "vis",
+    "inner_target_loss": 0.13241076469421387
+  }
+]

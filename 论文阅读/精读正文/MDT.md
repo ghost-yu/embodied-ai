@@ -1,0 +1,190 @@
+## 1. 动机、贡献与论文地图
+
+Play data 是人自由操作环境的长轨迹，不一定按任务切成整齐的示范。语言标注稀少，但未来图像天然能表达“希望到达的状态”。MDT 要同时利用语言目标和图像目标，生成完成任务的连续动作序列。
+
+三个核心部分：Transformer 动作扩散；Masked Generative Foresight（MGF）让当前任务表征包含未来信息；Contrastive Latent Alignment（CLA）使同一任务的图像/语言条件表征对齐。它不是训练一个视频模型后用视频规划，也不是把已有 LLM 直接改成动作 token 生成器。
+
+论文地图：§III-A/Eq.(1) 定义 play 与目标；§III-B/Eqs.(2–4) 讲扩散；§III-C/Figure 1 讲编码器-解码器；§III-D/Figure 2/Eq.(5) 讲 MGF；§III-E/Eq.(6) 讲 CLA；Eq.(7) 汇总 loss；Table I/II/III/IV 与 Figure 4 评估长链、稀疏标注和真机。PDF 页码主要为 2–8。
+
+## 2. 从数据里构造目标【必须会】
+
+原论文动作块为 $\bar a_i=(a_i,\ldots,a_{i+k-1})$，i 是机器人时间，k 是动作块长度。当前观测记 s_i，目标 $g\in\{o,l\}$ 分别为图像和语言目标。图像目标取未来观测 $o_i=s_{i+j}$，原文 j 从限定 [20,50] 的几何分布采样；若有语言标注则还能产生语言条件样本。
+
+Eq.(1) 是最大化条件动作 likelihood 的总体目标。它不意味着代码显式计算完整扩散分布的 log probability；实际使用去噪代理目标训练。无语言标注的数据仍可用未来图像构造训练任务；CLA 需要有效图文配对，不能说所有无标注帧都能计算同一种图文对比监督。
+
+图像目标的未来偏移 j、MGF 未来偏移 v=3、动作块 k=10 和去噪步数 K=10 是四个不同变量。尤其不能把 MGF 的三步预测写成图像目标只取三步后的图。
+
+## 3. Figure 1/2 的架构路径
+
+多视角当前图像经 ResNet 编码（MDT）或冻结 Voltron+Perceiver（MDT-V）；语言/图像目标经对应 CLIP 编码。多模态 Transformer encoder 合并当前状态与目标，产生条件 latent tokens。动作 decoder 接受带噪动作 token，通过 self-attention 建模动作序列，通过 cross-attention读取任务条件；noise-level embedding 经 adaLN 调节 block。
+
+|变量|类型、shape|去向|
+|---|---|---|
+|多视角观测|浮点图像 `[B,C,H,W]`，按 camera 分开|视觉编码器→perceptual_emb|
+|图像/语言目标|图像张量/字符串token|visual_goal/language_goal→latent_goal|
+|条件 tokens|浮点 `[B,N_c,D]`|Transformer encoder→cross-attention 与辅助模块|
+|干净动作|浮点 `[B,10,D_a]`|监督动作块；D_a 按任务接口确定|
+|noise|同动作 shape 的高斯浮点|构造带噪动作|
+|sigma|浮点 `[B]`，广播为 `[B,1,1]`|控制噪声强度与去噪条件|
+|图文对比向量|浮点 `[B,D_z]`|归一化→相似度矩阵 `[B,B]`|
+|MGF 图像 patches|浮点 `[B,U,P]`|future decoder→masked reconstruction|
+
+训练中的 Future Image-Decoder 接收部分未来 patch 与 mask，利用条件表征重建缺失 patch；推理动作不需要拿到未来真图，也不需要辅助图像 decoder。Figure 2 的未来图像是训练信号，不能作为推理观测泄漏给策略。
+
+## 4. 去噪目标：Dθ 与 inner_model 不是一回事
+
+Eq.(4) 为：
+
+$$L_{SM}=\mathbb E_{\sigma,\bar a_i,\epsilon}\left[\alpha(\sigma_t)\|D_\theta(\bar a_i+\epsilon,s_i,g,\sigma_t)-\bar a_i\|_2^2\right].$$
+
+σ 是 noise level，α 是 loss 权重函数，Dθ 是干净动作去噪器，ϵ 表示原公式中的扰动，其噪声尺度需结合 σ 理解。实际代码先采标准高斯 noise，再乘 sigma 加到 action。action、noise、noised_input 都是 `[B,k,D_a]`。
+
+在 `GCDenoiser` 中采用 Karras/EDM 预条件化，教学转写为：
+
+$$D_\theta(x,s,g,\sigma)=c_{skip}x+c_{out}F_\theta(c_{in}x,s,g,\sigma),$$
+$$c_{skip}=\frac{\sigma_{data}^2}{\sigma^2+\sigma_{data}^2},\quad
+c_{out}=\frac{\sigma\sigma_{data}}{\sqrt{\sigma^2+\sigma_{data}^2}},\quad
+c_{in}=\frac1{\sqrt{\sigma^2+\sigma_{data}^2}}.$$
+
+x 是带噪动作；Fθ 是 inner_model 的网络输出。`GCDenoiser.loss(state, action, goal, noise, sigma, **kwargs)` 实际训练 target 是：
+
+$$y_F=\frac{a-c_{skip}x}{c_{out}}.$$
+
+关键原代码：
+
+```python
+noised_input = action + noise * append_dims(sigma, action.ndim)
+model_output = self.inner_model(state, noised_input * c_in, goal, sigma, **kwargs)
+target = (action - c_skip * noised_input) / c_out
+return (model_output - target).pow(2).flatten(1).mean(), model_output
+```
+
+`append_dims` 为每个样本的 sigma 添加 singleton 轴；`.pow(2)` 是逐元素平方；`.flatten(1)` 把除 batch 外的动作时间与维度合并，`.mean()` 得标量。loss 返回 `(标量, 网络输出)`，不是干净动作 Dθ。`GCDenoiser.forward` 才组合 skip/out 得到去噪动作。类继承 nn.Module，`inner_model` 是有参数的子模块；loss 不主动更新参数，优化器在训练循环执行更新。
+
+数值例：σ_data=0.5、σ=0.5、a=0.2、标准高斯样本=1，则 x=0.7，c_skip=0.5，c_out≈0.35355，c_in≈1.41421，target≈−0.42426。若 Fθ 完全等于这个 target，组合后的 Dθ=0.2。这个例子解释为何不能把 inner_model 输出笼统叫“预测噪声”。
+
+Eq.(2) 是带 Wiener 随机过程的连续时间 SDE；β 控制注入噪声。Eq.(3) 在 σ_t=t 的约定下给 probability-flow ODE：$d\bar a_i=-t\nabla_{\bar a_i}\log p_t(\bar a_i|s_i,g)dt$。这里的 t 是生成模型时间，不是机器人 i。SDE/ODE 推导【建议会】，先掌握训练目标与采样方向【必须会】。
+
+## 5. 两个辅助目标逐个拆开
+
+### MGF：用未来重建约束当前表征【必须会】
+
+Eq.(5)：$L_{MGF}(s_i)=\frac1U\sum_{u\in patch(s_{i+v})}\mathbf1_{m(u)}(u-\hat u)^2$。
+
+U 是 patch 总数，u 是未来 patch 的像素向量，û 是预测，m 指示是否遮挡。计算：取 i+v 帧→patchify→随机 mask→未来 decoder→只对遮挡 patch 累计误差。公式中的 patch 内维度汇总写得简略，具体 reduction 要看 `MaskedTransformerImgDecoder.compute_loss`，不能把 1/U 自动改成有效 mask 数平均而不注明。
+
+例：四个 patch、只遮两个，其平方误差和为 1、3，按原式 patch 总数归一化得 (1+3)/4=1；按 mask 数归一化则得 2，这不是相同数值。MGF 鼓励“当前表征能预测目标条件下的未来”，不保证未来一定可执行。
+
+**保存实现已核对：`MaskedTransformerImgDecoder.compute_loss`（L274）先把图像 patchify，分别取两个时间位置 zero/k 的 target 和 reconstruction，在 patch 内像素维 `.mean(dim=-1)`，再计算 `(loss_per_patch * mask).sum()/mask.sum()`，最后平均 zero_loss 和 k_loss。** `symmetric_mask=True` 共享 mask，否则分别用 `mask[:,0]` 和 `mask[:,1]`。所以实现明确按遮挡数归一化，不能直接称逐项等同于 Eq.(5) 的 1/U。返回实际为标量 tensor；函数标注的五项 Tuple 与实际 return 不一致，阅读返回语句更可靠。restore_idxs 在该方法体中未使用；计算 loss 不主动更新参数。零 mask 分母的运行边界还未测试。
+
+### CLA：对齐的是带状态的任务表征【必须会】
+
+Eq.(6) 令 $S_{ij}=C(z_i^o,z_j^l)/\upsilon$，完整对称目标可写为：
+
+$$L_{CLA}=-\frac1{2B}\sum_{i=1}^B\left[\log\frac{e^{S_{ii}}}{\sum_j e^{S_{ij}}}+\log\frac{e^{S_{ii}}}{\sum_j e^{S_{ji}}}\right].$$
+
+zo/zl 为同一状态在图像/语言目标下的表征；C 是余弦相似度，υ 是温度，i/j 是 batch 样本。相似度矩阵是 `[B,B]`，对角是匹配对。两项分别做图像→语言与语言→图像分类。
+
+小例：B=2，S 为单位矩阵，则匹配概率 e/(e+1)≈0.731，双向平均 loss≈0.313。真实机器人 batch 可能有相同语言标签，直接把其他样本全当负例可能有问题。已追踪到当前 loss 方法接收但不使用 lang_text，具体见第 9 节；实际 batch 是否存在重复文本仍未统计。
+
+Eq.(7) 原文写 $L_{MDT}=L_{SM}+\alpha L_{MGF}+\beta L_{CLIP}$；上一节称 CLA，这里的 L_CLIP 是命名不一致，按上下文解释为对比项。正文说多数设置 α=β=0.1；**当前默认 yaml 的 cont_alpha=masked_beta=1.0，σ_data=0.5**。配置覆写可能改变值，因此不能把保存默认当成原文所有实验的实际配置。
+
+## 6. 可执行链与重要方法
+
+`mdt/training.py`（Hydra）→`conf/config.yaml`/defaults→数据 module→`MDTVAgent`→Lightning training_step→compute_input_embeddings→diffusion_loss→MGF/CLA→total_loss→Lightning optimizer。Hydra `_target_` 是要实例化的类路径，`_recursive_: false` 会影响子配置是否立即递归实例化。
+
+`training_step(batch,batch_idx,dataloader_idx=0)` 中 batch 是按模态组织的嵌套字典。它改变 `self.modality_scope`、保存 latent encoder embedding、记录训练指标；返回总 loss。`compute_contrastive_loss` 只在 scope 含 lang 时计算，其他返回设备上的零标量。推理 `forward(obs,goal)` 选择目标编码，走 sampler；没有 MGF 的未来图像监督输入。
+
+默认 yaml 的 `multistep/act_window_size=10` 与 `num_sampling_steps=10` 数值碰巧一样，含义不同。`sigma_min/max=0.001/80` 是扩散噪声范围，不是动作允许范围。`voltron_cache` 当前是开发者 Linux 路径，必须替换成有效本地资源；它不是可直接访问的公开权重网址。
+
+## 7. 实验、消融和结论边界
+
+Table I/PDF 6 页 CALVIN 评估 1000 条连续五任务链，平均完成长度越高越好。D→D：MDT=3.59、MDT-V=3.72、MT-ACT=2.98；MDT-V 高 0.74 个任务。ABCD→D：MDT=4.41、MDT-V=4.52、RoboFlamingo=4.09，MDT-V 高 0.43。ABCD 包含测试环境 D，不是 ABC→D 的未见环境评测。RoboFlamingo 原文仅报最佳 seed，不能把其 ±0.00 理解为真正没有随机性。
+
+Table II/PDF 7 页：LIBERO 仅 2% 语言标注下，MDT 无辅助平均 68.5%，只 CLA=73.1%，只 MGF=70.0%，两者=74.3%。完整模型比无辅助高 5.8 个百分点，相对约 8.47%；原文“8.5%”应该区分相对与绝对。LIBERO-Long 无辅助65.0、完整64.8，不能写所有 suite 都受益。
+
+Table III/PDF 8 页真机 20 任务各五次：MT-ACT=0.25，MDT=0.51，完整=0.58。辅助项高 7 个百分点；有限测试和复杂任务条件限制了外推。图中的任务成功与 masked image reconstruction loss 是不同指标。
+
+## 8. Transformer 的实际张量路径与 Python 行为【必须会】
+
+本节专门追踪 `MDTVTransformer`，不能把它的 `state_images` 变量名理解成原始 RGB。进入此类以前，上游已经抽取图像特征。以小 demo 的 B=16、当前特征数 N=3、动作块 H=10 为例：
+
+|调用顺序|实际方法、输入与输出|目的与状态变化|
+|---|---|---|
+|1|`GCDenoiser.loss`：action/noise `[16,10,7]`，sigma `[16]`|生成带噪动作；返回标量 loss 与内部网络输出；不执行 optimizer|
+|2|`MDTVTransformer.forward` → `forward_enc_only`|先建立状态/目标上下文，再解码动作；两步属于同一个有参数的对象|
+|3|`preprocess_goals`：`[16,12]` → `[16,1,12]`|补 token 轴；若最后一维等于 `2*obs_dim` 则取前半，demo 用 12 避免触发这个分支|
+|4|`process_state_embeddings`：`state_images [16,3,8]` → `[16,3,64]`，`state_obs [16,1,4]` → `[16,1,64]`|分别用 `tok_emb` 和 `proprio_emb` 投影；缺少 state_obs 时没有本体 token|
+|5|`process_goal_embeddings`：`[16,1,12]` → `[16,1,64]`|`states['modality']=='lang'` 选 `lang_emb`，否则选 `goal_emb`；改变目标分支，不改变动作输出维数|
+|6|`concatenate_inputs`：goal、state、proprio 沿 dim=1 拼接 → `[16,5,64]`|ada conditioning 开启时不拼接 sigma token；encoder 更新 `latent_encoder_emb` 为本次上下文|
+|7|`action_emb`：带噪动作 `[16,10,7]` → `[16,10,64]`|每个动作时间位置成为一个 token；不是逐个生成离散动作词|
+|8|`process_sigma_embeddings`：sigma → log(sigma)/4 → 正弦嵌入与 MLP → `[16,1,64]`|噪声条件进入 decoder 的 adaLN 路径；sigma 必须为正，不能送零进去取 log|
+|9|`decoder(action_x,emb_t,context)` → `action_pred` → `[16,10,7]`|返回内部网络 Fθ；wrapper 再恢复 Dθ|
+
+`nn.Module` 的 `model(...)` 会调用 `forward` 并保留 PyTorch 的 hooks；`model.train()`/`eval()` 切换 dropout 等行为，并不自动训练或关掉梯度。`loss.backward()` 只累计 `.grad`；`optimizer.step()` 才改变权重。`with torch.no_grad()` 用于采样以避免构建反向图；保存 `state_dict()` 是保存参数张量，并不是保存输入或整个数据集。
+
+self-attention 让动作块的各位置共享信息，cross-attention 让动作查询读取五个条件 token。教学写法为 `softmax(QKᵀ/√d)V`：若四个 heads、每 head d=16，动作 query 为 `[B,4,10,16]`，条件 key/value 为 `[B,4,5,16]`，相似度为 `[B,4,10,5]`。每个动作位置对五个条件位置分配权重，输出回到 `[B,10,64]`。这里用于说明维度，具体 dropout、归一化与投影以 `transformer_blocks.py` 为准。
+
+需注意保存版本的两个行为：`mask_cond` 训练时按 `[B,T,D]` 的元素采 Bernoulli mask，并不是始终按整个句子丢弃；demo 的 goal_drop=0。`pos_emb` 和 `apply_position_embeddings` 存在，但此 `forward_enc_only/forward_dec_only` 路径没有调用该辅助方法；不能看到构造参数 `use_abs_pos_emb=True` 就断言绝对位置嵌入已加到 token 上。这个结论只针对保存的 MDTVTransformer 路径，不能推广到另一个 MDTTransformer 类或所有版本。
+
+## 9. CLA 的源码边界与采样循环【建议会】
+
+`MDTVAgent.clip_auxiliary_loss(self,image_features,lang_features,mode='symmetric',lang_text=None)` 输入两个 `[B,D_z]` 浮点特征，`F.normalize(...,dim=-1)` 将每行归一化。可学习的 `logit_scale.exp()` 乘到两组特征的矩阵乘法上，得到 `[B,B]` logits；labels 是 `arange(B)`，即第 i 行正确类别为 i。`symmetric` 对两个方向的 cross_entropy 求平均；`img_to_text` 单方向，`text_to_img` 转置，其他字符串抛 ValueError。返回标量 tensor，不主动更新权重。**函数接收 lang_text，但当前方法体没有使用它；注释中的 unique_mask 也没有生效。因此这里没有按重复语言文字过滤负例。** 正确性应结合实际 batch 配对解释，不能把注释当执行代码。
+
+`clip_extra_forward` 会设置模型 train 模式并用带噪动作计算上下文，是有状态的方法；仅看 loss 公式会漏掉这一行为。本 demo 没实例化整个 Agent，也没执行 CLA 或 MGF；这里是静态源码结论。
+
+`get_sigmas_exponential(n=10,sigma_min=.001,sigma_max=1)` 生成十个由大到小的正 sigma，末尾再附零，共 11 个值。`sample_ddim(model,state,action,goal,sigmas,scaler=None,extra_args=None,callback=None,disable=None,eta=1.)` 循环 10 次，每次用当前正 sigma 调去噪器，callback 接收本次 i/sigma/denoised 等；返回连续动作块，不直接执行机器人。action 为初始 `[B,H,D_a]` 噪声动作，state 为条件字典，goal 为目标特征，sigmas 为长度 K+1 的一维 schedule；extra_args 展开后传给模型，disable 控制进度条，scaler 在此方法体中未使用。
+
+令当前噪声为 σ、下一噪声为 σ′，当前预测干净动作为 D，本实现的更新可整理成：
+
+$$x'=(\sigma'/\sigma)x+(1-\sigma'/\sigma)D.$$
+
+这是把源码 `t=-log(sigma)`、`sigma_fn(t)=exp(-t)` 和 `-expm1(-h)` 合起来后的教学等价写法。例：σ=1、σ′=.5、x=.8、D=.2，则 x′=.5。最后 σ′=0，得到 x′=D；当前 sigma 仍为正，所以不会调用模型计算 log(0)。公式是采样循环一步，不是 EDM 训练 target。
+
+该方法有 `@torch.no_grad()`，不会记录采样反向图；采样本身仍会更新网络的 `latent_encoder_emb` 缓存。当前保存实现接收 `eta`，但循环没有使用它，也没有注入新随机噪声。因此固定模型、条件和初始噪声时传 eta=0 或 1 应给相同结果。随机性来自初始动作噪声，而不是这个 eta 参数；其他 sampler 需单独读，不能据此称所有扩散采样都确定。
+
+
+## 10. 小 demo：官方动作核心实际运行
+
+本次导入保存仓库的 `MDTVTransformer`、`GCDenoiser` 和 `sample_ddim`，通过 `inspect.unwrap` 核验原函数文件路径，并对六个关键源码保存 SHA-256。没有用伪模块替代依赖，也没有改动官方核心源码。模型随机初始化，共 **329,095** 个参数；2 层 encoder、2 层 decoder、4 heads、hidden=64。PyTorch 2.2.0+cpu，CPU，seed=43，241 次 AdamW 更新。此为缩小配置的官方模块 demo，状态为**部分成功；完整论文实验未复现**。
+
+每个合成任务含状态特征、图像目标特征和语言目标特征；后两者使用不同输入位置编码同一标量 z。动作块的目标为 `[z,0.5z,-0.3z,0.2z,0,0,0.2]`，重复十个位置。z 取 16 个 -0.7 到 +0.7 的值；这些不是米、弧度或真实末端坐标。两个目标分支交替训练，没有生成真实图片或处理真实文字。`torch.stack(...,dim=-1)` 把七个长度 B 的向量变成 `[B,7]`；`[:,None,:]` 增加时间轴，再 `repeat(1,10,1)` 得 `[B,10,7]`。
+
+|检查|实际结果|能支持的结论|
+|---|---|---|
+|EDM target 与 wrapper 组合|手工公式与官方输出一致|内部输出与干净动作输出关系正确|
+|前向|encoder `[16,5,64]`，动作 `[16,10,7]`|缩小配置张量路径可执行|
+|反向|encoder/decoder/goal/sigma/action head 梯度有限且非零|所检查核心模块收到梯度；sigma 梯度很小，不能因此宣称其训练充分|
+|绝对位置参数|此路径 pos_emb.grad 为 None|与未调用 position helper 的静态定位一致|
+|新噪声去噪评估，vis|0.08448666 → 0.00780687|同一批训练条件，换噪声后误差下降|
+|新噪声去噪评估，lang|0.08427044 → 0.01100310|同上，不是保留任务泛化|
+|官方 DDIM|10 次模型调用；输出 `[2,10,7]`，全部有限|核心采样可运行|
+|eta 参数行为|固定输入时 eta=0 与 eta=1 一致|保存的当前 DDIM 实现没有使用 eta|
+|权重重载|独立进程 strict load，采样最大差 0|保存和加载链路可复查|
+
+采样两目标的动作块 MSE=0.01181233。第一维目标 -0.7/+0.7 的生成值分别大约 -0.47 到 -0.29、+0.49 到 +0.65，方向已区分，仍有偏差。图右横轴为**动作块内的位置**，不是去噪步骤；十次去噪的 callback 数据单独存放在 `采样记录.json`。训练图展示内部 target loss，不能直接拿它与干净动作 MSE 的数值比较。
+
+![合成训练与动作块采样](<G:/具身/论文阅读/Multimodal Diffusion Transformer -  Learning Versatile Behavior from Multimodal Goals/复现/outputs/demo曲线.png>)
+
+官方默认 sigma_max=80，小 demo 改为 1；sigma_min=.001，十级 exponential schedule 加末尾零。训练 sigma 为 .03～1 的 log-uniform 分布，和默认配置的采样密度不同。结果不能用于对照论文分数。MGF/CLA 的完整训练、Voltron/CLIP 前端、CALVIN/LIBERO、真机控制都没有执行。没有下载论文预训练 checkpoint。
+
+复跑命令、依赖、失败修复及脚本说明见 [复现记录](<G:/具身/论文阅读/Multimodal Diffusion Transformer -  Learning Versatile Behavior from Multimodal Goals/复现/README.md>)；[训练脚本](<G:/具身/论文阅读/Multimodal Diffusion Transformer -  Learning Versatile Behavior from Multimodal Goals/复现/scripts/mdt_core_demo.py>)；[原始结果](<G:/具身/论文阅读/Multimodal Diffusion Transformer -  Learning Versatile Behavior from Multimodal Goals/复现/outputs/结果.json>)。本 demo 未建立环境 episode、reset/step、reward/done 或控制频率，输出是合成动作张量，不能连接真机执行。
+
+## 11. 掌握层次与 Paper ↔ Code
+
+**必须掌握**：四种时间/长度 j、v、k、K 的区别；当前状态与目标怎样构成上下文；EDM 三个系数与内部 target；训练、采样各自的输入输出；MGF 的未来图像仅用于训练；CLA 的 batch 对角匹配；论文与配置权重差异。
+
+**第二遍掌握**：SDE/probability-flow ODE、adaLN、sigma embedding；同文不同目标模态的监督来源；重复语言负例；CALVIN 长链统计与 seed 条件；MGF reduction 和图像 patch 内维度。
+
+**可以暂时不掌握**：全部 sampler 变体、distributed gather、完整 CALVIN/机器人驱动安装。小模型需要这些核心知识，不需要先把所有基础库读一遍。
+
+|Paper ↔ Code|定位|验证边界|
+|---|---|---|
+|Eq.(1) play/目标|数据 module → training_step → compute_input_embeddings|已建立导航；真实 batch 时间索引未运行|
+|Figure 1 动作 Transformer|MDTVTransformer.forward/forward_enc_only/forward_dec_only；transformer_blocks|官方缩小配置前向/反向实际通过|
+|Eq.(4) SM/EDM|GCDenoiser.loss/forward/get_scalings|实际输出与手工公式核对|
+|Eq.(5) MGF|compute_img_gen_loss → MaskedTransformerImgDecoder.compute_loss|静态核对；按 mask.sum、两个时间位置平均；未执行训练|
+|Eq.(6) CLA|compute_contrastive_loss → clip_auxiliary_loss|静态核对三个 mode；lang_text 未使用；未执行训练|
+|Eq.(7) 总目标|MDTVAgent.training_step；conf/model/mdtv_agent.yaml|论文与保存默认权重有差异，最终实验覆写未全核对|
+|动作推理|MDTVAgent.forward → sample_ddim|Agent 整体未运行；官方 sampler 独立运行通过|
+|论文 checkpoint 与基准成绩|官方资源导航|本 demo 未加载 checkpoint；没有基准复现结果|

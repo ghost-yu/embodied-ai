@@ -1,0 +1,103 @@
+{
+  "implementation": "teaching ToyVLA; not official RT-2, PaLI-X, or PaLM-E",
+  "environment": {
+    "python": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+    "tensorflow": "2.15.1",
+    "numpy": "1.26.4",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "device": "CPU"
+  },
+  "seed": 23,
+  "updates": 301,
+  "shared_parameters": 70416,
+  "data": {
+    "train_layouts": 18,
+    "heldout_layouts": 6,
+    "queries_per_layout": 3,
+    "robot_and_web_mix": ".5/.5 per-sample mean CE",
+    "physical_world": "none"
+  },
+  "train": {
+    "samples": 54,
+    "robot_all_8_fields_exact": 1.0,
+    "web_position_exact": 1.0,
+    "robot_tokens_in_bank": true
+  },
+  "heldout": {
+    "samples": 18,
+    "robot_all_8_fields_exact": 0.7222222222222222,
+    "web_position_exact": 0.7222222222222222,
+    "robot_tokens_in_bank": true
+  },
+  "initial_mixed_ce": 5.905514717102051,
+  "final_recorded_mixed_ce": 0.0013029237743467093,
+  "constraint_probe": {
+    "free_id": 4,
+    "action_only_id": 144
+  },
+  "example": {
+    "query_color": 0,
+    "image": [
+      [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    ],
+    "action_token_ids": [
+      16,
+      208,
+      80,
+      144,
+      144,
+      144,
+      144,
+      271
+    ],
+    "action_bin_ids": [
+      0,
+      192,
+      64,
+      128,
+      128,
+      128,
+      128,
+      255
+    ],
+    "terminate": 0,
+    "continuous_fields": [
+      0.50390625,
+      -0.49609375,
+      0.00390625,
+      0.00390625,
+      0.00390625,
+      0.00390625,
+      0.99609375
+    ]
+  },
+  "limits": [
+    "synthetic images, tiny randomly initialized transformer",
+    "no web pretraining or PaLI-X/PaLM-E weights",
+    "no causal ablation of co-fine-tuning",
+    "no robot environment or physical safety check"
+  ]
+}

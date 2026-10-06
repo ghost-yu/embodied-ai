@@ -1,0 +1,98 @@
+WARNING:tensorflow:From G:\����\�����Ķ�\.venvs\rt1\Lib\site-packages\keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+WARNING:tensorflow:From G:\����\�����Ķ�\.venvs\rt1\Lib\site-packages\keras\src\backend.py:873: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From G:\����\�����Ķ�\.venvs\rt1\Lib\site-packages\keras\src\layers\normalization\layer_normalization.py:328: The name tf.nn.fused_batch_norm is deprecated. Please use tf.compat.v1.nn.fused_batch_norm instead.
+
+{
+  "train": {
+    "robot_exact": 1.0,
+    "web_exact": 1.0
+  },
+  "heldout": {
+    "robot_exact": 0.7222222222222222,
+    "web_exact": 0.7222222222222222
+  },
+  "same_scene_different_queries": [
+    {
+      "same_scene": true,
+      "query_color": 0,
+      "expected_bins": [
+        0,
+        192,
+        64,
+        128,
+        128,
+        128,
+        128,
+        255
+      ],
+      "predicted_bins": [
+        0,
+        192,
+        64,
+        128,
+        128,
+        128,
+        128,
+        255
+      ]
+    },
+    {
+      "same_scene": true,
+      "query_color": 1,
+      "expected_bins": [
+        0,
+        64,
+        192,
+        128,
+        128,
+        128,
+        128,
+        255
+      ],
+      "predicted_bins": [
+        0,
+        64,
+        192,
+        128,
+        128,
+        128,
+        128,
+        255
+      ]
+    },
+    {
+      "same_scene": true,
+      "query_color": 2,
+      "expected_bins": [
+        0,
+        192,
+        192,
+        128,
+        128,
+        128,
+        128,
+        255
+      ],
+      "predicted_bins": [
+        0,
+        192,
+        192,
+        128,
+        128,
+        128,
+        128,
+        255
+      ]
+    }
+  ],
+  "weights_sha256": "65609ad82d026b3bfabc2522c145c12bf9b6a016e4939746aaa3033ad714a321",
+  "source_sha256": {
+    "inspect_checkpoint.py": "bb396657156ed1feef6498fbbcf2e0d7b643b19b6bf0921a7b0c133c21168551",
+    "plot_demo.py": "05871bd5a503fc08cf55043880b9d44a8de90e6a58a79247240f4c5e9b915e47",
+    "rt2_recipe_demo.py": "7961eff9fc730f9459e3967e60038eca60d97a423c11f3944747f1244e83ac6f",
+    "toy_vla.py": "af082157e2a32d7a3040deecff12b9829ef916a3cdbcacba4f8edd0727c2057e"
+  }
+}
+PASS: saved weights reproduce recorded free-running metrics; split layouts are disjoint.

@@ -1,0 +1,10 @@
+{
+  "local_links_checked": 24,
+  "missing_links": [],
+  "source_hashes_match": true,
+  "reading_structure": "passed",
+  "script_syntax": "passed",
+  "updates_recorded": 501,
+  "independent_reload": "passed within float32 tolerance",
+  "full_paper_reproduction": false
+}

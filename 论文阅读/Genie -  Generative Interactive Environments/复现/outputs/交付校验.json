@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-05",
+  "notes_chars": 27709,
+  "local_links_checked": 29,
+  "missing_links": [],
+  "source_hashes_match": true,
+  "repo_clean": true,
+  "strict_reload_two_runs": "passed tolerance 1e-6",
+  "training_updates_recorded": 6405,
+  "first_run_collapse": true,
+  "ablation_codes_used": 7,
+  "stable_latent_action_semantics_proven": false,
+  "complete_MaskGIT_refinement_proven": false,
+  "original_full_paper_reproduction": false,
+  "artifact_sha256": {
+    "small_core_state.pt": "eedb15a33d0c0da1020387cfbf2dfcfb03194c63b4f50264b0a5d6e6c47ae2ef",
+    "fixture.pt": "87c1d20264319825fb9bc581bd7a1e4cbaa47ec7b234d8129381d520b3b94e5c",
+    "vq001_state.pt": "da13d44b93f67c301cca7482bf2fa6fbdca75b6e26953beed0edd9c62193cea0",
+    "vq001_fixture.pt": "f4d917d902180a2f990fb29b20adad364c2d3a3a52fddaad944cdc499dd0184a",
+    "genie_core_demo.py": "7ef4d342fde6ec07988593315bee0663975b969e9e76d0fefc8fe66f4e5c4af4",
+    "verify_and_plot.py": "72ee6811ae622627786848efa4389c40217b819a5c97ef0db8bbb026da94b8d7",
+    "vq_weight_ablation.py": "9a5fb30f707864fc733dd34c6678df32b0bc3955c71ccd9e1c65f6bb2f7ba95f"
+  },
+  "independent_fixture_audit": "Both finite/shapes/counts/purity/delta-PSNR recomputed from actual fixture"
+}

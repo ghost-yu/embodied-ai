@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-05",
+  "local_links_checked": 22,
+  "missing_links": [],
+  "source_hashes_match": true,
+  "repo_clean": true,
+  "updates": 501,
+  "strict_reload": true,
+  "semantic_representation_quality_proven": false,
+  "complete_paper_reproduction": false,
+  "artifact_sha256": {
+    "small_core_state.pt": "d52146fdda88dcc52f43156aac0c737575189e6865be7c96dc48e77a8c5de56b",
+    "fixture.pt": "9f82658894c6326e8f6ae58dad772db613d4c101a119b88533975037b9ccd056",
+    "ijepa_demo.py": "c8275060ff73c758bb08680b604db637f66810ee0c4db98a514138f75a8e64cf",
+    "verify_and_plot.py": "c390444054e0f564f103167a7a681d9daa4852c8a01c4557cb51d436b3f3c4c8"
+  }
+}

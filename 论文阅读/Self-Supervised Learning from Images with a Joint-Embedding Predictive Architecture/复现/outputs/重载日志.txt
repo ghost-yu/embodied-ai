@@ -1,0 +1,20 @@
+{
+  "strict_reload": true,
+  "max_abs_error": {
+    "prediction": 0.0,
+    "target": 0.0
+  },
+  "reloaded_metrics": {
+    "smooth_l1": 0.001121385139413178,
+    "prediction_mse": 0.002242770278826356,
+    "target_feature_std_across_images_mean": 0.02806279808282852,
+    "pooled_feature_std_across_images_mean": 0.008377548307180405
+  },
+  "target_motion_diagnostics": {
+    "prediction_vs_initial_frozen_target_smooth_l1": 0.8160987496376038,
+    "final_vs_initial_target_mse": 2.272071599960327,
+    "oracle_global_mean_final_target_baseline_smooth_l1": 0.005278305616229773
+  },
+  "full_paper_reproduction": false,
+  "semantic_representation_quality_proven": false
+}

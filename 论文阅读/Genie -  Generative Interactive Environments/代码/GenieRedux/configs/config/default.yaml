@@ -1,0 +1,70 @@
+# @package _global_
+
+optimizer:
+  learning_rate: 1e-04
+  betas: [0.9, 0.99]
+  weight_decay: 1e-04
+  max_grad_norm: 10.0
+  linear_warmup_start_factor: 0.5
+  linear_warmup_total_iters: 5000
+  cosine_annealing_t_max: 100000
+  cosine_annealing_min_lr: 5e-5
+  warmup_steps: 10000
+  decay_steps: 100000
+
+
+train:
+  dataset_root_dpath: ???
+  dataset_name: ???
+  num_processes: 1
+  batch_size: 6
+  grad_accum: 1
+  num_train_steps: 150000
+  num_frames: 16
+  sample_num_frames: 15
+  seq_step: 16
+  log_every: 50
+  validate_every: 1000
+  save_model_every: 1000
+  resume_ckpt: "no"
+  save_root_dpath: "./checkpoints"
+  enable_cache: True
+  cache_dpath: "cache/${train.dataset_name}/"
+  wandb_dpath: "./logs/wandb"
+  wandb_mode: "online"
+  wandb_project: "GenieRedux"
+  wandb_name: "genie_redux"
+  n_data_workers: 8
+  n_total_samples: ???
+  n_envs: ???
+  max_valid_size: ???
+
+eval:
+  dataset_root_dpath: ???
+  dataset_name: ???
+  model_fpath: ???
+  num_processes: 1
+  batch_size: 6
+  n_data_workers: 8
+  n_envs: 0
+  enable_cache: False
+  cache_dpath: "cache/${eval.dataset_name}/"
+  num_actions: 5
+  num_frames: 16
+  seq_step: 16
+  inference_steps: 25
+  sample_num_frames: 10
+  delta_psnr_horizon: 4
+  num_first_frames: 2
+  dream_length: 2
+  model_name: "genie_redux_1"
+  save_root_dpath: "./outputs/evaluation/"
+  wandb_mode: "disabled"
+  inference_method: "one_go"
+  action_to_take: -1
+  eval_control: "no"
+
+model: ???
+
+tokenizer_fpath: null
+model_fpath: null

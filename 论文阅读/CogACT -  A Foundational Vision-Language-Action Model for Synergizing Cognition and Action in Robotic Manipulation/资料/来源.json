@@ -1,0 +1,19 @@
+{
+  "short": "CogACT",
+  "title": "CogACT: A Foundational Vision-Language-Action Model for Synergizing Cognition and Action in Robotic Manipulation",
+  "arxiv": "2411.19650",
+  "repo": "microsoft/CogACT",
+  "lesson": "4.4",
+  "priority": "第二轮对照阅读",
+  "folder": "G:\\具身\\论文阅读\\CogACT -  A Foundational Vision-Language-Action Model for Synergizing Cognition and Action in Robotic Manipulation",
+  "version": "v1",
+  "pdf_url": "https://arxiv.org/pdf/2411.19650v1",
+  "resolved_url": "https://arxiv.org/pdf/2411.19650v1",
+  "bytes": 15005828,
+  "pages": 20,
+  "sha256": "49c16f57e5779451590d9ac912a23b63a242a3600068f6bacaffd281b357b21f",
+  "pdf_status": "成功",
+  "code_status": "成功",
+  "commit": "b174a1b86deedfab4d198d935207e7bb0527994e",
+  "checkout": "G:\\具身\\论文阅读\\CogACT -  A Foundational Vision-Language-Action Model for Synergizing Cognition and Action in Robotic Manipulation\\代码\\CogACT"
+}

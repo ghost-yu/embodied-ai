@@ -1,0 +1,19 @@
+{
+  "short": "I-JEPA",
+  "title": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture",
+  "arxiv": "2301.08243",
+  "repo": "facebookresearch/ijepa",
+  "lesson": "世界模型3.3",
+  "priority": "JEPA基础；课程未指定具体版本",
+  "folder": "G:\\具身\\论文阅读\\Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture",
+  "version": "v3",
+  "pdf_url": "https://arxiv.org/pdf/2301.08243v3",
+  "resolved_url": "https://arxiv.org/pdf/2301.08243v3",
+  "bytes": 3571832,
+  "pages": 17,
+  "sha256": "eddbdc093eb4d48662bcf4fbd1c6735ccd606205cc9070977ce317d68aff3941",
+  "pdf_status": "成功",
+  "code_status": "成功",
+  "commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+  "checkout": "G:\\具身\\论文阅读\\Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture\\代码\\ijepa"
+}

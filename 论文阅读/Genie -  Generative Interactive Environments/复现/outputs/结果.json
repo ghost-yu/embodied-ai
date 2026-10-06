@@ -1,0 +1,150 @@
+{
+  "tokenizer_pixel_mse": 0.00034769283956848085,
+  "LAM_pixel_mse": 0.009008362889289856,
+  "LAM_code_histogram": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    256,
+    0
+  ],
+  "LAM_code_direction_counts": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      50,
+      76,
+      66,
+      64
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "LAM_direction_purity_posthoc": 0.296875,
+  "heldout_dynamics_masked_CE": 1.0612555742263794,
+  "one_step_generated_pixel_mse": 0.013677403330802917,
+  "different_code_pixel_mse": 0.013512886129319668,
+  "toy_delta_PSNR_t1_dB": -0.1204199492931366,
+  "generated_visual_codes_used": [
+    0,
+    2,
+    3,
+    5,
+    7,
+    9,
+    13,
+    14,
+    22,
+    24,
+    25,
+    27,
+    30,
+    31
+  ],
+  "visual_codes_used": [
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    11,
+    13,
+    14,
+    17,
+    18,
+    22,
+    24,
+    25,
+    27,
+    30
+  ],
+  "eight_user_codes_output_pair_max_difference": 0.27367883920669556,
+  "label": "第三方GenieRedux小配置机制验证，非原Genie官方复现",
+  "seed": 97,
+  "torch": "2.2.0+cpu",
+  "train_videos": 512,
+  "test_videos": 64,
+  "frames": 5,
+  "updates": {
+    "tokenizer": 1201,
+    "LAM": 1801,
+    "dynamics": 801
+  },
+  "config": {
+    "dim": 32,
+    "image_size": 8,
+    "patch_size": 2,
+    "temporal_patch_size": 1,
+    "num_blocks": 1,
+    "heads": 2,
+    "dim_head": 16,
+    "channels": 1,
+    "codebook_dim": 16,
+    "vq_loss_w": 0.25
+  },
+  "parameters": {
+    "tokenizer": 56842,
+    "LAM": 62258,
+    "dynamics": 37314
+  },
+  "future_frame_causality_test": "passed (video prior codes and LAM prior actions unchanged)",
+  "no_true_actions_in_training": true,
+  "wall_seconds": 116.65476775169373,
+  "repo_commit": "bc80fe43c8370fd79ac5f9fc1719c65c52e294db",
+  "source_sha256": {
+    "models\\construct_model.py": "309ee72dacd43d3b47576c96316a59bba1d0cc5373de3f4c42e30f64358d6350",
+    "models\\dynamics.py": "21f8c38023c1ca7acf878759f48e48c4b4525fdfcce28fe109576559231c3770",
+    "models\\genie_redux.py": "f0166995c5e4f6a78bdaaf55dd74f5b44a04f2e89ac0e107b8632ae78897114b",
+    "models\\lam.py": "fc9387622a5af8cbeddca21d28bc52949d41eda683fef5ed037dbfc43b65bdff",
+    "models\\tokenizer.py": "afa334fcd497132eb1fef6bc3d34e83821e1e03be27a6884f313b4760c02dcf4",
+    "models\\__init__.py": "959707a254add33fe9f22b0a9d860565d1af1ae049b9840f5da533fe442d526f",
+    "models\\components\\attention.py": "052b619ecf623fd503613b79ea9382ff9ecce07d191c698c92455c724e6c93d1",
+    "models\\components\\stvivit.py": "5df33531c8b6b3b283e96e1df78bc3ed9a2fc73adf8bbe5c6e50cdfa05c8e7a7",
+    "models\\components\\vector_quantize.py": "38c952a167908d179f9236094ba9cdd41233e22f2f1c1b02a7df629e040d62c7",
+    "models\\components\\__init__.py": "f981a19159abf1a8f8b6e0dcc405cf793a709e278c472013695ee8fd065104de"
+  }
+}

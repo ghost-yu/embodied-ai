@@ -1,0 +1,6 @@
+{
+  "status": "部分成功",
+  "scope": "官方DiT-S动作核心：901更新、epsilon/DDIM/CFG和ensemble验证，重载通过；采样精度不足，完整论文未复现",
+  "date": "2026-10-03",
+  "full_paper_reproduction": "未复现"
+}

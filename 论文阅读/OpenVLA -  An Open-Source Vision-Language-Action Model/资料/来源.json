@@ -1,0 +1,19 @@
+{
+  "short": "OpenVLA",
+  "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+  "arxiv": "2406.09246",
+  "repo": "openvla/openvla",
+  "lesson": "2.5",
+  "priority": "重点精读",
+  "folder": "G:\\具身\\论文阅读\\OpenVLA -  An Open-Source Vision-Language-Action Model",
+  "version": "v3",
+  "pdf_url": "https://arxiv.org/pdf/2406.09246v3",
+  "resolved_url": "https://arxiv.org/pdf/2406.09246v3",
+  "bytes": 13240309,
+  "pages": 37,
+  "sha256": "353c37df34458f12f969b14dfd8b77175b727b9cddea7bb891759beddeefe1be",
+  "pdf_status": "成功",
+  "code_status": "成功",
+  "commit": "c8f03f48af692657d3060c19588038c7220e9af9",
+  "checkout": "G:\\具身\\论文阅读\\OpenVLA -  An Open-Source Vision-Language-Action Model\\代码\\openvla"
+}

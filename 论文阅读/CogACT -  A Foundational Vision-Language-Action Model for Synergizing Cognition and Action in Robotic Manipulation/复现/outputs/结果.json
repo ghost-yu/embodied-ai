@@ -1,0 +1,274 @@
+{
+  "reference_date": "2026-10-03",
+  "repo_commit": "b174a1b86deedfab4d198d935207e7bb0527994e",
+  "environment": {
+    "python": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+    "torch": "2.2.0+cpu",
+    "timm": "0.9.10",
+    "numpy": "1.26.4",
+    "device": "CPU"
+  },
+  "config": {
+    "token_size": 4096,
+    "model_type": "DiT-S",
+    "in_channels": 7,
+    "future_action_window_size": 15,
+    "past_action_window_size": 0,
+    "diffusion_steps": 100,
+    "noise_schedule": "squaredcos_cap_v2"
+  },
+  "parameter_count": 12476807,
+  "source_sha256": {
+    "action_model/action_model.py": "1425bb526634565006751d07ccb84786ebf5752b97510043fb9195fd338020e6",
+    "action_model/models.py": "7849dcf46c38bedfa5156821ec7d339b5c4f0051bac08d8862e8dc5d3485c4fe",
+    "action_model/__init__.py": "01ab63cd5e98e07943a7f4b3886bc82f4af136ad1edb2455845259af76d2d62e",
+    "action_model/gaussian_diffusion.py": "d4e738388c37ae5d4b959e3ebd3b6444aa037b6ed44f69f55ff419e8013587ca",
+    "action_model/respace.py": "a0ada42b06a770cee84fdbd06f66b48e6e3f448d9c7af60ff96d22de01095254",
+    "sim_cogact/adaptive_ensemble.py": "9081cca02dd98136aede2aa9ddb60465595652748f8635b4f02a93d8fac9c6e0"
+  },
+  "shapes": {
+    "cognition": [
+      8,
+      1,
+      4096
+    ],
+    "action": [
+      8,
+      16,
+      7
+    ],
+    "DiT_sequence": [
+      8,
+      17,
+      384
+    ]
+  },
+  "q_sample_formula": "passed",
+  "official_epsilon_loss_matches": "passed",
+  "forced_condition_dropout": "passed",
+  "initial_head_gradient": 1.3438756465911865,
+  "initial_condition_gradient": 0.0,
+  "updates": 901,
+  "initial_validation_epsilon_mse": 0.9335870742797852,
+  "final_validation_epsilon_mse": 0.01419737096875906,
+  "initial_fixed_noise_sample_mse": 51.713619232177734,
+  "final_fixed_noise_sample_mse": 0.23166592419147491,
+  "new_noise_same_conditions_sample_mse": 0.4124804139137268,
+  "DDIM_original_timesteps": [
+    [
+      90,
+      90,
+      90,
+      90,
+      90,
+      90,
+      90,
+      90
+    ],
+    [
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80
+    ],
+    [
+      70,
+      70,
+      70,
+      70,
+      70,
+      70,
+      70,
+      70
+    ],
+    [
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60,
+      60
+    ],
+    [
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50
+    ],
+    [
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40
+    ],
+    [
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30
+    ],
+    [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "DDIM_timestep_map": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90
+  ],
+  "CFG_formula_and_batch_pair": "passed",
+  "CFG_sample_shape": [
+    2,
+    16,
+    7
+  ],
+  "post_training_gradient_norms": {
+    "condition": 0.012251781299710274,
+    "time": 0.043461091816425323,
+    "action": 0.19945868849754333,
+    "first_block": 0.12235081195831299,
+    "output": 0.3501436710357666
+  },
+  "history_embedder_unused": true,
+  "ensemble_aligned_candidates": [
+    [
+      2.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.5
+    ],
+    [
+      11.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.5
+    ],
+    [
+      20.0,
+      3.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.5
+    ]
+  ],
+  "ensemble_weights": [
+    0.3318550804707049,
+    0.33406113194102854,
+    0.33408378758826657
+  ],
+  "ensemble_result": [
+    11.020058364058055,
+    2.0022287071175615,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.5
+  ],
+  "ensemble_history_and_reset": "passed",
+  "sample_first_dimension_extremes": [
+    [
+      0.0741720125079155,
+      0.27665889263153076,
+      0.27392321825027466,
+      0.3886111378669739,
+      0.09587625414133072,
+      0.1536882072687149,
+      -0.04348377138376236,
+      0.16792652010917664,
+      0.04607004672288895,
+      0.18216437101364136,
+      0.26999372243881226,
+      -0.3542464077472687,
+      0.1052650585770607,
+      -0.09905529022216797,
+      0.4309653341770172,
+      -0.01558542437851429
+    ],
+    [
+      1.1628860235214233,
+      1.029563546180725,
+      1.1934096813201904,
+      0.9714548587799072,
+      1.0325716733932495,
+      1.190108060836792,
+      1.2070696353912354,
+      1.1219463348388672,
+      1.223828911781311,
+      1.0275814533233643,
+      1.0582129955291748,
+      1.1354594230651855,
+      1.0860111713409424,
+      1.0927932262420654,
+      1.0561845302581787,
+      1.0788393020629883
+    ]
+  ],
+  "limitations": [
+    "synthetic cognition features, not actual VLM/image/text",
+    "same eight training conditions used for evaluation, not held-out task generalization",
+    "official DiT-S random initialization, not paper DiT-B or pretrained checkpoint",
+    "no full CogACT.forward or real VLM hidden extraction",
+    "no robot normalization/unit conversion/command or SIMPLER benchmark"
+  ]
+}

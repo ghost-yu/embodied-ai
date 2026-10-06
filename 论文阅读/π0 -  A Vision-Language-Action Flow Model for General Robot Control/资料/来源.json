@@ -1,0 +1,19 @@
+{
+  "short": "pi0",
+  "title": "π0: A Vision-Language-Action Flow Model for General Robot Control",
+  "arxiv": "2410.24164",
+  "repo": "Physical-Intelligence/openpi",
+  "lesson": "4.4",
+  "priority": "重点精读",
+  "folder": "G:\\具身\\论文阅读\\π0 -  A Vision-Language-Action Flow Model for General Robot Control",
+  "version": "v4",
+  "pdf_url": "https://arxiv.org/pdf/2410.24164v4",
+  "resolved_url": "https://arxiv.org/pdf/2410.24164v4",
+  "bytes": 7893845,
+  "pages": 17,
+  "sha256": "fbdfba56258bdbd220207ba63410c6c943e43a73e97a7a5a47ca0bc74204f821",
+  "pdf_status": "成功",
+  "code_status": "成功",
+  "commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+  "checkout": "G:\\具身\\论文阅读\\π0 -  A Vision-Language-Action Flow Model for General Robot Control\\代码\\openpi"
+}

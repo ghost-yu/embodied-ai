@@ -1,0 +1,2 @@
+PASS 0.5.3 0.10.2 [CpuDevice(id=0)] [{'original_variant': 'So400m/14', 'demo_variant': 'mu/32'}]
+16936448

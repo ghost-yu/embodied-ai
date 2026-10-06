@@ -1,0 +1,20 @@
+defaults:
+  - /connector@connector: retro_act
+  - _self_
+
+connector:
+  variant: auto_explore
+  game: [SuperMarioBros-Nes]
+  annotation_control_fpath: annotations/RetroAct_v0.1_control_GenieRedux-G-50_sublist.csv
+  agent:
+    checkpoint_fpath: ???
+    temperature: 1.0
+    gamma: 0.15
+  generator_config:
+    n_instances: 1
+    n_sessions: 10000
+    n_steps_max: 500
+    n_workers: 10
+    output_mode: frame
+
+dname: auto_explore_smb

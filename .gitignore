@@ -1,0 +1,55 @@
+
+# Local environments and caches
+.git/
+.venv/
+.venvs/
+venv/
+__pycache__/
+*.pyc
+node_modules/
+.cache/
+.ipynb_checkpoints/
+wheels/
+# Credentials
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+# Weights, binary dependencies, archives and media
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+*.h5
+*.hdf5
+*.msgpack
+*.onnx
+*.whl
+*.dll
+*.exe
+*.pyd
+*.lib
+*.a
+*.so
+*.zip
+*.tar
+*.gz
+*.7z
+*.mp4
+*.mp3
+*.wav
+*.webm
+*.part
+*.npy
+*.npz
+
+# Upstream LFS model placeholders (weights excluded)
+/论文阅读/RT-1 -  Robotics Transformer for Real-World Control at Scale/代码/robotics_transformer/trained_checkpoints/rt1main/ckpt-424760.data-00000-of-00001
+/论文阅读/RT-1 -  Robotics Transformer for Real-World Control at Scale/代码/robotics_transformer/trained_checkpoints/rt1main/variables/variables.data-00000-of-00001
+/论文阅读/RT-1 -  Robotics Transformer for Real-World Control at Scale/代码/robotics_transformer/trained_checkpoints/rt1multirobot/ckpt-589960.data-00000-of-00001
+/论文阅读/RT-1 -  Robotics Transformer for Real-World Control at Scale/代码/robotics_transformer/trained_checkpoints/rt1multirobot/variables/variables.data-00000-of-00001
+/论文阅读/RT-1 -  Robotics Transformer for Real-World Control at Scale/代码/robotics_transformer/trained_checkpoints/rt1simreal/ckpt-660240.data-00000-of-00001
+/论文阅读/RT-1 -  Robotics Transformer for Real-World Control at Scale/代码/robotics_transformer/trained_checkpoints/rt1simreal/variables/variables.data-00000-of-00001

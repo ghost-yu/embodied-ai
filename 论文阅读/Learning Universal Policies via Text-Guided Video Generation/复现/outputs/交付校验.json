@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-05",
+  "links_checked": 14,
+  "missing_links": [],
+  "paper_pdf_sha256": "5ded462cfcad30a6317610a4f991d3c1eca7826cbe208dbd9929c3837529708e",
+  "training_source_hash_matches": true,
+  "independent_strict_reload": true,
+  "script_syntax": "passed",
+  "training_updates_recorded": 3403,
+  "environment_execution": "64 episodes x 8 steps, synthetic DotEnv",
+  "toy_success_count": 18,
+  "toy_trials": 64,
+  "accurate_task_reproduction": false,
+  "full_paper_reproduction": false,
+  "artifact_sha256": {
+    "teaching_state.pt": "a25a6cbaa3f7a5fdb6b1f7bd04f3a010ee9b19075f7e2c8eaa1aceb4c5ce4201",
+    "fixture.pt": "5fdbe014b58333198407fbaed1194e99c6fa9ff9e5fbd9b0f459beab2fa2b7de",
+    "verify_and_plot.py": "f9cd98306172f434c21cce571d22eb69dc10ff1b82d9a1f564f966b899b169b3"
+  },
+  "fixture_shapes_finite_and_execution_metrics": "independently checked from rendered observations",
+  "recomputed_pixel_distance": 0.7322209477424622
+}

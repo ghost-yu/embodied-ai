@@ -1,0 +1,37 @@
+# @package _global_
+
+defaults:
+  - default
+  - /tokenizer/tokenizer
+  - /dynamics/dynamics
+  - _self_
+
+model: genie_redux_guided
+
+dynamics:
+  use_token: true
+  is_guided: true
+
+train:
+  dataset_root_dpath: "data_generation/datasets"
+  dataset_name: "retro_act_v0.0.0_auto_explore_smb"
+  wandb_name: "genie_redux_guided_ft_smb"
+  num_train_steps: 10000
+  batch_size: 4
+  grad_accum: 3
+  n_data_workers: 46
+  n_total_samples: 50
+  n_envs: 0
+  max_valid_size: 50
+  use_decoder_loss: false
+
+model_fpath: ${train.save_root_dpath}/genie_redux_guided/genie_redux_guided/model-100000.pt
+tokenizer_fpath: ${train.save_root_dpath}/tokenizer/tokenizer_ft_smb/model-15000.pt
+
+eval:
+  dataset_root_dpath: ${train.dataset_root_dpath}
+  dataset_name: "retro_act_v0.0.0_agent57_smb"
+  model_fpath: ${train.save_root_dpath}/${model}/${train.wandb_name}/model-10000.pt
+  eval_control: "yes"
+  n_data_workers: 46
+  n_envs: 0

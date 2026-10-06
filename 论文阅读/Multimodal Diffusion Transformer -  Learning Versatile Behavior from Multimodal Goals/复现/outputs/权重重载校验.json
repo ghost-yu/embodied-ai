@@ -1,0 +1,6 @@
+{
+  "strict_load": "passed",
+  "official_ddim_matches_saved_sample": true,
+  "max_abs_error": 0.0,
+  "no_robot_evaluation": true
+}

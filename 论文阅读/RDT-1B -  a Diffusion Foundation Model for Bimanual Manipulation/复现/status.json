@@ -1,0 +1,6 @@
+{
+  "status": "部分成功",
+  "scope": "官方 RDTRunner/RDT 缩小配置，128维64动作块：训练、ACI/mask、五步采样和重载；完整论文未复现",
+  "date": "2026-10-03",
+  "full_paper_reproduction": "未复现"
+}

@@ -1,0 +1,6 @@
+{
+  "status": "部分成功",
+  "scope": "官方小配置encoder/predictor/MaskCollator/optimizer/EMA、501更新与重载；合成图像特征方差缩小，语义质量未验证，完整论文未复现",
+  "date": "2026-10-05",
+  "full_paper_reproduction": "未复现"
+}

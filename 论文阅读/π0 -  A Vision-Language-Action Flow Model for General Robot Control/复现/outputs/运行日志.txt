@@ -1,0 +1,250 @@
+Constructed official Pi0: small config.
+PASS: masks, cache equivalence, exact flow loss.
+{"step": 0, "loss": 1.7219957113265991, "elapsed": 3.3}
+{"step": 20, "loss": 0.9444018602371216, "elapsed": 5.6}
+{"step": 40, "loss": 0.9484939575195312, "elapsed": 7.9}
+{"step": 60, "loss": 0.7794331312179565, "elapsed": 10.2}
+{"step": 80, "loss": 0.6215403079986572, "elapsed": 12.6}
+{"step": 100, "loss": 0.5541903376579285, "elapsed": 14.9}
+{"step": 120, "loss": 0.6653050780296326, "elapsed": 17.2}
+{"step": 140, "loss": 0.5092492699623108, "elapsed": 19.4}
+{"step": 160, "loss": 0.3297424912452698, "elapsed": 21.8}
+{"step": 180, "loss": 0.2808311879634857, "elapsed": 24.0}
+{"step": 200, "loss": 0.4723026156425476, "elapsed": 26.3}
+{"step": 220, "loss": 0.23643174767494202, "elapsed": 28.6}
+{"step": 240, "loss": 0.16745005548000336, "elapsed": 30.9}
+{"step": 260, "loss": 0.32998213171958923, "elapsed": 33.2}
+{"step": 280, "loss": 0.1222868338227272, "elapsed": 35.5}
+{"step": 300, "loss": 0.139988973736763, "elapsed": 37.8}
+{"step": 320, "loss": 0.09125266224145889, "elapsed": 40.1}
+{"step": 340, "loss": 0.1456836462020874, "elapsed": 42.4}
+{"step": 360, "loss": 0.05622927471995354, "elapsed": 44.8}
+{"step": 380, "loss": 0.06430875509977341, "elapsed": 47.1}
+{"step": 400, "loss": 0.03686634823679924, "elapsed": 49.4}
+{"step": 420, "loss": 0.0668661966919899, "elapsed": 51.7}
+{"step": 440, "loss": 0.06155448779463768, "elapsed": 54.0}
+{"step": 460, "loss": 0.061511628329753876, "elapsed": 56.3}
+{"step": 480, "loss": 0.05277170240879059, "elapsed": 58.6}
+{"step": 500, "loss": 0.03156032785773277, "elapsed": 60.8}
+{
+  "reference_date": "2026-10-03",
+  "repo_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+  "environment": {
+    "python": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+    "jax": "0.5.3",
+    "flax": "0.10.2",
+    "numpy": "1.26.4",
+    "optax": "0.2.4",
+    "device": "[CpuDevice(id=0)]"
+  },
+  "config": {
+    "dtype": "float32",
+    "paligemma_variant": "dummy",
+    "action_expert_variant": "dummy",
+    "pi05": false,
+    "max_token_len": 4,
+    "action_dim": 32,
+    "action_horizon": 50
+  },
+  "vision_override": "official SigLIP Module: So400m/14 -> mu/32 only at construction",
+  "parameter_count": 16936448,
+  "source_sha256": {
+    "src/openpi/models/pi0.py": "19b25188bd1c7a56c84c93762776a480c103d4060d30e790234939f5063640a2",
+    "src/openpi/models/pi0_config.py": "3e803fae376cb3bd1481e6b4cf3a1ee3b976de1411d62b035822af4be8584f7a",
+    "src/openpi/models/gemma.py": "543fb8ef8ac04195704f4ad402dc08821657005aec88a8a413efd870f5228ec0",
+    "src/openpi/models/siglip.py": "289bde3dc8dfb46c07d7ed4fbdd29a4dda2cc30f5e8a1b76cc7326d5d5959eca",
+    "src/openpi/models/model.py": "5fbf9b0e4bc9545e8facc17d4553abf9dd76ec0b3d80c5d6a12ec27ac85f35c4"
+  },
+  "shapes": {
+    "images": [
+      4,
+      224,
+      224,
+      3
+    ],
+    "state": [
+      4,
+      32
+    ],
+    "actions": [
+      4,
+      50,
+      32
+    ],
+    "prefix": [
+      4,
+      151,
+      64
+    ],
+    "suffix": [
+      4,
+      51,
+      64
+    ],
+    "loss": [
+      4,
+      50
+    ],
+    "full_mask": [
+      4,
+      202,
+      202
+    ],
+    "cache_leaves": [
+      [
+        4,
+        4,
+        151,
+        1,
+        16
+      ],
+      [
+        4,
+        4,
+        151,
+        1,
+        16
+      ]
+    ]
+  },
+  "mask_checks": "prefix cannot read suffix; state cannot read action; actions read actions bidirectionally",
+  "cache_vs_full_max_error": 2.086162567138672e-06,
+  "manual_flow_loss_matches": true,
+  "updates": 501,
+  "initial_new_key_flow_mse": 1.7082597017288208,
+  "final_same_new_key_flow_mse": 0.2179800420999527,
+  "first_gradient_norms": {
+    "PaliGemma/img": 84008.6875,
+    "PaliGemma/llm": 27.321455001831055,
+    "action_in_proj/bias": 0.08713124692440033,
+    "action_in_proj/kernel": 0.1459745168685913,
+    "action_out_proj/bias": 0.2351316511631012,
+    "action_out_proj/kernel": 1.6144036054611206,
+    "action_time_mlp_in/bias": 0.1223001629114151,
+    "action_time_mlp_in/kernel": 0.726012647151947,
+    "action_time_mlp_out/bias": 0.2673414945602417,
+    "action_time_mlp_out/kernel": 0.6389309167861938,
+    "state_proj/bias": 0.06672380864620209,
+    "state_proj/kernel": 0.017266372218728065
+  },
+  "initial_fixed_noise_sample_mse": 1.5977948904037476,
+  "final_fixed_noise_sample_mse": 0.012922229245305061,
+  "new_noise_same_conditions_sample_mse": 0.01392164546996355,
+  "sampling_steps": 10,
+  "dt": -0.1,
+  "sample_goal_extremes_dim0": [
+    [
+      -0.6162183284759521,
+      -0.8598039746284485,
+      -0.6910904049873352,
+      -0.695473313331604,
+      -0.6158972382545471,
+      -0.4226726293563843,
+      -0.7891941666603088,
+      -0.5097686648368835,
+      -0.6568742990493774,
+      -0.5966219902038574,
+      -0.7507784962654114,
+      -0.6390788555145264,
+      -0.4979413151741028,
+      -0.6130021810531616,
+      -0.6162233352661133,
+      -0.47060179710388184,
+      -0.6508334279060364,
+      -0.652031421661377,
+      -0.6427085399627686,
+      -0.44078949093818665,
+      -0.8002790808677673,
+      -0.5868477821350098,
+      -0.46936511993408203,
+      -0.9248021245002747,
+      -0.650103747844696,
+      -0.7122466564178467,
+      -0.16924986243247986,
+      -0.7720499634742737,
+      -0.7724515795707703,
+      -0.6782247424125671,
+      -0.6416874527931213,
+      -0.6347304582595825,
+      -0.7189966440200806,
+      -0.5656272768974304,
+      -0.6522367000579834,
+      -0.6691016554832458,
+      -0.8804462552070618,
+      -0.5336560010910034,
+      -0.43352776765823364,
+      -0.4975658357143402,
+      -0.6434029340744019,
+      -0.6480305194854736,
+      -0.5922604203224182,
+      -0.7098330855369568,
+      -0.648831307888031,
+      -0.6230999827384949,
+      -0.663800060749054,
+      -0.7031721472740173,
+      -0.6380640268325806,
+      -0.6531266570091248
+    ],
+    [
+      0.6456427574157715,
+      0.33309993147850037,
+      0.3160513639450073,
+      0.6077285408973694,
+      0.5395835638046265,
+      0.6250977516174316,
+      0.5650610327720642,
+      0.5534862279891968,
+      0.5499074459075928,
+      0.5019164681434631,
+      0.5735664367675781,
+      0.5908585786819458,
+      0.44318220019340515,
+      0.4779220521450043,
+      0.4514923095703125,
+      0.5057160258293152,
+      0.6452721357345581,
+      0.288484662771225,
+      0.6506239175796509,
+      0.7572226524353027,
+      0.4186244010925293,
+      0.5127555131912231,
+      0.5449663400650024,
+      0.5488922595977783,
+      0.7327779531478882,
+      0.1173076406121254,
+      0.5571343898773193,
+      0.5260566473007202,
+      0.5459089875221252,
+      0.5544570088386536,
+      0.4755069315433502,
+      0.48666512966156006,
+      0.6960673928260803,
+      0.5290036201477051,
+      0.5357204079627991,
+      0.5235711932182312,
+      0.5819929242134094,
+      0.5183947086334229,
+      0.22006326913833618,
+      0.5602003931999207,
+      0.5683000087738037,
+      0.48878663778305054,
+      0.5778810977935791,
+      0.5527166724205017,
+      0.6320693492889404,
+      0.4650312066078186,
+      0.6511573791503906,
+      0.6050596237182617,
+      0.6021527051925659,
+      0.520322859287262
+    ]
+  ],
+  "limitations": [
+    "synthetic RGB/IDs/states, not real data or pretrained semantics",
+    "same four conditions for training and sampling, no held-out task generalization",
+    "official tiny configurations; vision constructor adapter; not 3.3B model",
+    "train=False disables data augmentation only; gradients/optimizer still execute",
+    "JAX path only; PyTorch imported for repo dependencies but not executed",
+    "no paper benchmark or robot evaluation"
+  ]
+}
+PASS: official Pi0 loss, masks/cache, gradients, training and cached Euler sampling.

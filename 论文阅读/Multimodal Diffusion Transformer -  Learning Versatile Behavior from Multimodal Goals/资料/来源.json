@@ -1,0 +1,18 @@
+{
+  "short": "MDT",
+  "title": "Multimodal Diffusion Transformer: Learning Versatile Behavior from Multimodal Goals",
+  "arxiv": "2407.05996",
+  "repo": "intuitive-robots/mdt_policy",
+  "lesson": "2.6、2.8",
+  "priority": "重点精读与实践候选",
+  "folder": "G:\\具身\\论文阅读\\Multimodal Diffusion Transformer -  Learning Versatile Behavior from Multimodal Goals",
+  "pdf_status": "成功",
+  "code_status": "成功",
+  "commit": "e7a78e744751724d3faa5d113fe8cb5f678c052a",
+  "checkout": "G:\\具身\\论文阅读\\Multimodal Diffusion Transformer -  Learning Versatile Behavior from Multimodal Goals\\代码\\mdt_policy",
+  "pdf_url": "https://export.arxiv.org/pdf/2407.05996",
+  "bytes": 33332084,
+  "pages": 20,
+  "sha256": "b2fd04048c5ba85c5b47257f04bc45d1f836e14e6fbff3e6098c50b11024314d",
+  "version": "v1"
+}

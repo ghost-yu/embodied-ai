@@ -1,0 +1,6 @@
+{
+  "status": "部分成功",
+  "scope": "第三方GenieRedux小配置tokenizer/LAM/dynamics训练、VQ单因素对照、user码生成与重载；动作语义不稳且采样存在限制，非原官方实现，完整论文未复现",
+  "date": "2026-10-05",
+  "full_paper_reproduction": "未复现"
+}

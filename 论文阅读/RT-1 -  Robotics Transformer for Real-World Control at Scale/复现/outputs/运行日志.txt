@@ -1,0 +1,50 @@
+WARNING:tensorflow:From G:\����\�����Ķ�\.venvs\rt1\Lib\site-packages\keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+WARNING:tensorflow:From G:\����\�����Ķ�\.venvs\rt1\Lib\site-packages\keras\src\backend.py:873: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+G:\����\�����Ķ�\.venvs\rt1\Lib\site-packages\keras\src\initializers\initializers.py:120: UserWarning: The initializer GlorotUniform is unseeded and being called multiple times, which will return identical values each time (even if the initializer is unseeded). Please update your code to provide a seed to the initializer, or avoid using the same initializer instance more than once.
+  warnings.warn(
+G:\����\�����Ķ�\.venvs\rt1\Lib\site-packages\keras\src\initializers\initializers.py:120: UserWarning: The initializer RandomNormal is unseeded and being called multiple times, which will return identical values each time (even if the initializer is unseeded). Please update your code to provide a seed to the initializer, or avoid using the same initializer instance more than once.
+  warnings.warn(
+{
+  "scope": "official FiLM/TokenLearner forward + synthetic TokenLearner training; no complete RT-1 policy",
+  "python": "3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]",
+  "tensorflow": "2.15.1",
+  "numpy": "1.26.4",
+  "os": "Windows-10-10.0.26200-SP0",
+  "device": [
+    "/physical_device:CPU:0"
+  ],
+  "seed": 17,
+  "commit": "4569641b8111f3f402c32d8e24becd2a6e952ecc",
+  "source_sha256": {
+    "film_efficientnet/film_conditioning_layer.py": "885931e6910f61574948cf69f18334c13cbd9b149c6e2d1f17ed490bfd0d57d8",
+    "tokenizers/token_learner.py": "ddf8718c9225b2c48a6940bfd3f6b9b8da2e77133b371d31dfbd93750ba1419d"
+  },
+  "film_identity_max_abs_error": 0.0,
+  "film_nonidentity_check": "passed",
+  "input_shape": [
+    6,
+    9,
+    9,
+    512
+  ],
+  "token_shape": [
+    6,
+    8,
+    512
+  ],
+  "history_visual_shape": [
+    1,
+    48,
+    512
+  ],
+  "attention_sum_max_error": 1.1920928955078125e-07,
+  "official_vs_manual_aggregation": "passed",
+  "toy_initial_mse": 3.8886091709136963,
+  "toy_final_mse": 2.0539038914080265e-08,
+  "toy_updates": 120,
+  "checkpoint_is_lfs_pointer": true,
+  "checkpoint_pointer_text": "version https://git-lfs.github.com/spec/v1\noid sha256:b84cc6e6a0bb9309c7250289b6a7f469d9e582863593966f3cfab008ac859509\nsize 141841691\n"
+}
+PASS: official module forward, attention normalization, gradients, and synthetic training.
